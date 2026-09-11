@@ -9,6 +9,8 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
@@ -176,6 +178,24 @@
         .icon-scale:hover {
             transform: scale(1.15) rotate(3deg);
         }
+
+        /* Modern FAQ Accordion Smooth Animations */
+        .faq-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+        .faq-item.active .faq-wrapper {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .faq-icon {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen transition-colors duration-300">
@@ -220,6 +240,7 @@
                     <a href="#catalog" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Katalog</a>
                     <a href="#about" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Tentang Kami</a>
                     <a href="#reviews" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Ulasan Pembeli</a>
+                    <a href="#faq" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">FAQ</a>
                 </nav>
 
                 <!-- Search Bar (Desktop) -->
@@ -250,28 +271,8 @@
                         <i class="fa-solid fa-bag-shopping text-lg"></i>
                         <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-glow transform scale-0 transition-transform duration-300 ease-out">0</span>
                     </button>
-                </div>
 
-                <!-- Action Icons -->
-                <div class="flex items-center space-x-1 sm:space-x-2">
-                    <!-- Dark Mode Toggle Button -->
-                    <button onclick="toggleDarkMode()" id="theme-toggle-btn" title="Ganti Mode Gelap/Terang" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all">
-                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-lg"></i>
-                    </button>
-
-                    <!-- Wishlist Button -->
-                    <button onclick="toggleWishlistDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative transition-all">
-                        <i class="fa-regular fa-heart text-lg"></i>
-                        <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm transform scale-0 transition-transform">0</span>
-                    </button>
-
-                    <!-- Cart Button -->
-                    <button onclick="toggleCartDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative transition-all">
-                        <i class="fa-solid fa-bag-shopping text-lg"></i>
-                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-glow transform scale-0 transition-transform">0</span>
-                    </button>
-
-                    <!-- Mobile Menu Trigger -->
+                    <!-- Mobile Search Trigger -->
                     <button onclick="toggleMobileSearch()" class="md:hidden p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
                         <i class="fa-solid fa-magnifying-glass text-lg"></i>
                     </button>
@@ -290,6 +291,7 @@
                 <a href="#catalog" class="hover:text-brand-500">Katalog</a>
                 <a href="#about" class="hover:text-brand-500">Tentang Kami</a>
                 <a href="#reviews" class="hover:text-brand-500">Ulasan</a>
+                <a href="#faq" class="hover:text-brand-500">FAQ</a>
             </div>
         </div>
     </header>
@@ -364,7 +366,7 @@
 
             <!-- Sort Bar -->
             <div class="flex items-center justify-between border-t border-b border-slate-200/80 dark:border-slate-800 py-3 mb-8 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                <span id="product-count-text">Menampilkan 9 produk</span>
+                <span id="product-count-text">Menampilkan 8 produk</span>
                 <div class="flex items-center space-x-2">
                     <label for="sort-select" class="hidden sm:inline">Urutkan:</label>
                     <select id="sort-select" onchange="handleSortChange(this.value)" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
@@ -530,7 +532,7 @@
                     </div>
                 </div>
 
-                <!-- Review 2: 4 Stars (Constructive feedback) -->
+                <!-- Review 2: 4 Stars -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
@@ -554,7 +556,7 @@
                     </div>
                 </div>
 
-                <!-- Review 3: 5 Stars (Repeat Buyer) -->
+                <!-- Review 3: 5 Stars -->
                 <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
@@ -578,6 +580,123 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="scroll-reveal max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-widest bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full border border-brand-200 dark:border-brand-800">
+                    PERTANYAAN UMUM
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight mt-3 mb-3">
+                    Pertanyaan Sering Diajukan
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                    Temukan jawaban cepat seputar cara pemesanan, ketahanan produk kuliner UMKM, pengiriman, hingga garansi toko LUMINA.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item active bg-white dark:bg-slate-900 border border-brand-500/30 dark:border-brand-500/40 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">1</span>
+                            Bagaimana cara melakukan pemesanan di LUMINA Store?
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
+                        </div>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="overflow-hidden">
+                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
+                                Sangat mudah! Pilih produk yang Anda inginkan dari katalog, klik <strong>Beli</strong> untuk memasukkan ke keranjang belanja, lalu tekan tombol <strong>Checkout via WhatsApp</strong>. Detail rincian pesanan Anda akan terkirim otomatis ke WhatsApp Customer Care kami untuk konfirmasi alamat dan opsi pembayaran.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">2</span>
+                            Berapa lama daya tahan Sambal Cumi & produk kuliner UMKM?
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
+                        </div>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="overflow-hidden">
+                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
+                                Produk sambal UMKM kami tahan hingga <strong>1 bulan pada suhu ruangan</strong> (dalam kondisi segel belum dibuka) dan bertahan hingga <strong>3 bulan jika disimpan dalam kulkas</strong>. Setelah segel alumunium dibuka, disarankan dikonsumsi dalam 7–10 hari dan selalu gunakan sendok bersih.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">3</span>
+                            Apakah pengiriman aman untuk tujuan luar pulau / jarak jauh?
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
+                        </div>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="overflow-hidden">
+                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
+                                Sangat aman! Setiap kemasan botol disegel dengan <em>double aluminum foil seal</em> pres panas anti-bocor, kemudian dibungkus ekstra bubble wrap tebal dan dimasukkan ke dalam kardus pelindung khusus sehingga tahan guncangan ekspedisi ke seluruh Indonesia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">4</span>
+                            Metode pembayaran apa saja yang didukung?
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
+                        </div>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="overflow-hidden">
+                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
+                                Kami mendukung berbagai metode pembayaran fleksibel: Transfer Bank (BCA, Mandiri, BRI, BNI), QRIS All Payment (Gopay, OVO, DANA, ShopeePay, LinkAja, dan m-Banking), serta Virtual Account.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">5</span>
+                            Bagaimana jika paket diterima dalam kondisi rusak atau bocor?
+                        </span>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
+                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
+                        </div>
+                    </button>
+                    <div class="faq-wrapper">
+                        <div class="overflow-hidden">
+                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
+                                Kami memberikan <strong>Garansi Retur 100%</strong>. Apabila produk yang Anda terima pecah, retak, atau mengalami bocor selama perjalanan, cukup kirimkan foto/video unboxing ke Customer Care WhatsApp kami, dan kami akan langsung mengirimkan barang baru pengganti secara gratis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -801,217 +920,194 @@
                     <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Kategori</h4>
                     <ul class="space-y-2">
                         <li><a href="#catalog" onclick="filterCategory('food')" class="hover:text-white transition-colors">Sambal Cumi UMKM</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('audio')" class="hover:text-white transition-colors">Audio Headphones</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('wearables')" class="hover:text-white transition-colors">Smartwatch</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('accessories')" class="hover:text-white transition-colors">Aksesoris Premium</a></li>
+                        <li><a href="#catalog" onclick="filterCategory('audio')" class="hover:text-white transition-colors">Audio & Headphones</a></li>
+                        <li><a href="#catalog" onclick="filterCategory('wearables')" class="hover:text-white transition-colors">Wearables</a></li>
+                        <li><a href="#catalog" onclick="filterCategory('accessories')" class="hover:text-white transition-colors">Aksesoris Tech</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 2 -->
                 <div class="space-y-3">
-                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Menu Cepat</h4>
+                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Bantuan & Informasi</h4>
                     <ul class="space-y-2">
                         <li><a href="#about" class="hover:text-white transition-colors">Tentang Kami</a></li>
-                        <li><a href="#reviews" class="hover:text-white transition-colors">Ulasan Pembeli</a></li>
-                        <li><a href="https://wa.me/6285150945518" target="_blank" class="hover:text-white transition-colors">Pesan via WhatsApp</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition-colors">Ulasan Pelanggan</a></li>
+                        <li><a href="#faq" class="hover:text-white transition-colors">FAQ & Bantuan</a></li>
+                        <li><a href="javascript:void(0)" onclick="openPromoModal()" class="hover:text-white transition-colors">Voucher & Promo</a></li>
+                        <li><a href="https://wa.me/6285150945518" target="_blank" class="hover:text-white transition-colors">Pusat Bantuan WA</a></li>
                     </ul>
                 </div>
 
-                <!-- Newsletter -->
+                <!-- Column 3 -->
                 <div class="space-y-3">
-                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Berlangganan Promo</h4>
-                    <p class="text-slate-400 text-[11px]">Dapatkan info diskon eksklusif langsung di email Anda.</p>
-                    <form onsubmit="subscribeNewsletter(event)" class="space-y-2">
-                        <input type="email" required placeholder="Email Anda..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brand-500">
-                        <button type="submit" class="w-full py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl font-bold text-xs transition-colors">Langganan</button>
-                    </form>
+                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Jam Operasional</h4>
+                    <div class="space-y-1.5 text-[11px]">
+                        <p><strong class="text-slate-200">Senin - Sabtu:</strong><br>08:00 - 20:00 WIB</p>
+                        <p><strong class="text-slate-200">Minggu:</strong><br>09:00 - 17:00 WIB</p>
+                        <p class="text-emerald-400 font-semibold pt-1"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Buka Hari Ini</p>
+                    </div>
                 </div>
 
             </div>
 
-            <!-- Bottom Credit -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-[11px] gap-4">
-                <p>&copy; 2026 LUMINA Store. All rights reserved.</p>
-                <div class="flex items-center space-x-4">
-                    <span>Metode Pembayaran:</span>
-                    <i class="fa-brands fa-cc-visa text-base text-slate-400"></i>
-                    <i class="fa-brands fa-cc-mastercard text-base text-slate-400"></i>
-                    <i class="fa-brands fa-whatsapp text-base text-emerald-400"></i>
+            <!-- Bottom Copyright -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+                <p>&copy; 2026 LUMINA Store. All rights reserved. Dibuat dengan dedikasi untuk kuliner & produk lokal.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-slate-300">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-slate-300">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-slate-300">Garansi Pengiriman</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // STORE DATA SOURCE
+        /* ------------------------------------------------------------------ */
+        /* PRODUCTS DATABASE DATA ARRAY                                       */
+        /* ------------------------------------------------------------------ */
         const productsData = [
             {
-                id: 100,
+                id: 1,
                 name: "Sambal Cumi Juara UMKM (200gr)",
                 category: "food",
-                price: 45000,
-                originalPrice: 60000,
+                price: 38000,
+                originalPrice: 48000,
                 rating: 4.9,
-                reviews: 512,
-                badge: "Terlaris UMKM",
-                badgeColor: "bg-rose-600",
-                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80",
-                description: "Sambal cumi olahan rumahan khas UMKM dengan potongan cumi asin melimpah, empuk tak berbau amis, dipadu rempah cabai pilihan tanpa bahan pengawet."
+                reviewsCount: 342,
+                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80",
+                description: "Sambal Cumi khas rumahan racikan UMKM lokal. Menggunakan cumi asin premium yang empuk melimpah, cabai segar pilihan, tanpa pengawet sintesis, dan dikemas dengan double seal aluminum foil anti-bocor.",
+                tags: ["BEST SELLER", "UMKM LOKAL"],
+                isBestSeller: true
             },
             {
-                id: 101,
-                name: "AeroSound Pro Wireless Headphone",
+                id: 2,
+                name: "Wireless ANC Headphones Luxe Pro",
                 category: "audio",
-                price: 1850000,
-                originalPrice: 2450000,
-                rating: 4.9,
-                reviews: 142,
-                badge: "Terlaris Tech",
-                badgeColor: "bg-amber-500",
-                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
-                description: "Headphone nirkabel premium dengan fitur Active Noise Cancellation (ANC), driver neodymium 40mm, dan daya tahan baterai hingga 40 jam nonstop."
-            },
-            {
-                id: 102,
-                name: "Lumina Pulse Smartwatch Gen 5",
-                category: "wearables",
-                price: 2190000,
-                originalPrice: 2790000,
-                rating: 4.8,
-                reviews: 98,
-                badge: "Diskon 20%",
-                badgeColor: "bg-rose-500",
-                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
-                description: "Smartwatch AMOLED dengan pemantau detak jantung, kadar oksigen SpO2, GPS presisi tinggi, serta ketahanan air hingga 50 meter (5 ATM)."
-            },
-            {
-                id: 104,
-                name: "MagCharge Ultra Powerbank 20.000mAh",
-                category: "accessories",
                 price: 499000,
-                originalPrice: 699000,
-                rating: 4.7,
-                reviews: 210,
-                badge: "Hot Deal",
-                badgeColor: "bg-indigo-600",
-                image: "https://images.unsplash.com/photo-1609592424074-94622f98f828?auto=format&fit=crop&w=800&q=80",
-                description: "Powerbank pengisian cepat MagSafe 65W PD Fast Charging, sanggup mengisi iPhone 15 hingga 4x pengisian penuh."
-            },
-            {
-                id: 105,
-                name: "SoundPod Studio Earbuds ANC",
-                category: "audio",
-                price: 990000,
-                originalPrice: 1350000,
-                rating: 4.6,
-                reviews: 85,
-                badge: "Populer",
-                badgeColor: "bg-purple-600",
-                image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=800&q=80",
-                description: "Earbuds TWS super ringkas dengan teknologi Spatial Audio, mikrofon ganda jernih untuk panggilan, dan pengisian nirkabel Qi."
-            },
-            {
-                id: 106,
-                name: "TitanFit Endurance Tracker",
-                category: "wearables",
-                price: 1290000,
-                originalPrice: 1590000,
+                originalPrice: 750000,
                 rating: 4.8,
-                reviews: 64,
-                badge: "Diskon",
-                badgeColor: "bg-rose-500",
-                image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=80",
-                description: "Gelang kebugaran tangguh berbodi titanium dengan analisis tidur AI, pemantauan stres harian, dan daya baterai 14 hari."
+                reviewsCount: 128,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+                description: "Headphone wireless kelas studio dengan fitur Active Noise Canceling (ANC), bass mendalam, mikrofon bening untuk panggilan, dan ketahanan baterai hingga 40 jam pemakaian.",
+                tags: ["AUDIO HD", "DISKON 33%"],
+                isBestSeller: false
             },
             {
-                id: 107,
-                name: "DeskLum Minimalist LED Light",
+                id: 3,
+                name: "Smart Watch Ultra Fit Gen-2",
+                category: "wearables",
+                price: 325000,
+                originalPrice: 450000,
+                rating: 4.7,
+                reviewsCount: 95,
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
+                description: "Jam tangan pintar dengan layar AMOLED 1.85 inci, pemantau detak jantung 24/7, monitor kadar oksigen darah (SpO2), waterproof IP68, serta 100+ mode olahraga.",
+                tags: ["POPULER"],
+                isBestSeller: true
+            },
+            {
+                id: 4,
+                name: "Premium Leather Case & Sleeve",
                 category: "accessories",
-                price: 380000,
-                originalPrice: 480000,
+                price: 145000,
+                originalPrice: 200000,
                 rating: 4.9,
-                reviews: 112,
-                badge: "Desain Elegan",
-                badgeColor: "bg-slate-800",
-                image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
-                description: "Lampu meja arsitektural dengan suhu warna yang dapat disesuaikan (Warm to Cool White) dan port pengisian nirkabel di dasar lampu."
+                reviewsCount: 64,
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
+                description: "Sleeve dompet berbahan kulit sintetis microfiber kualitas tinggi untuk laptop/tablet up to 14 inci. Melindungi dari goresan, tahan percikan air, dan tampak elegan.",
+                tags: ["HANDMADE"],
+                isBestSeller: false
             },
             {
-                id: 108,
-                name: "Nova mechanical Wireless Keyboard",
-                category: "gadgets",
-                price: 1350000,
-                originalPrice: 1750000,
+                id: 5,
+                name: "Portable Bluetooth Bass Speaker",
+                category: "audio",
+                price: 289000,
+                originalPrice: 380000,
+                rating: 4.8,
+                reviewsCount: 110,
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80",
+                description: "Speaker portabel nirkabel dengan subwoofer ganda untuk bass menggelegar. Tahan air rating IPX7, cocok untuk outdoor, party, maupun pendamping ruang kerja.",
+                tags: ["EXTRA BASS"],
+                isBestSeller: false
+            },
+            {
+                id: 6,
+                name: "Sambal Bawang Pedas Tampol UMKM (200gr)",
+                category: "food",
+                price: 32000,
+                originalPrice: 40000,
                 rating: 4.9,
-                reviews: 189,
-                badge: "Best Seller",
-                badgeColor: "bg-amber-500",
-                image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80",
-                description: "Keyboard mekanik nirkabel Hot-Swappable dengan switch melintasi rasa mengetik taktil yang empuk, RGB backlit, dan bodi aluminium solid."
+                reviewsCount: 215,
+                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=600&q=80",
+                description: "Aroma bawang merah lokal yang digoreng garing berpadu dengan gurihnya cabai rawit pedas alami. Sangat cocok dijadikan lauk pendamping gorengan maupun nasi hangat.",
+                tags: ["PEDAS MANTAP"],
+                isBestSeller: true
+            },
+            {
+                id: 7,
+                name: "Ergonomic Silent Wireless Mouse",
+                category: "accessories",
+                price: 115000,
+                originalPrice: 160000,
+                rating: 4.6,
+                reviewsCount: 88,
+                image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
+                description: "Mouse nirkabel ergonimik dengan tombol silent-click tanpa suara. DPI yang dapat disesuaikan (800-1600 DPI) dan koneksi dual Bluetooth + 2.4G USB Dongle.",
+                tags: ["SILENT CLICK"],
+                isBestSeller: false
+            },
+            {
+                id: 8,
+                name: "Fast Charge Powerbank 20000mAh PD",
+                category: "accessories",
+                price: 210000,
+                originalPrice: 290000,
+                rating: 4.8,
+                reviewsCount: 176,
+                image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?auto=format&fit=crop&w=600&q=80",
+                description: "Powerbank kapsitas jumbo 20.000 mAh dilengkapi teknologi Fast Charging Power Delivery 22.5W & Quick Charge 3.0. Bodi melengkung ramping mudah dibawa.",
+                tags: ["FAST CHARGE"],
+                isBestSeller: false
             }
         ];
 
-        // GLOBAL APP STATE
-        let cart = [];
-        let wishlist = [];
+        /* ------------------------------------------------------------------ */
+        /* APPLICATION STATE VARIABLES                                        */
+        /* ------------------------------------------------------------------ */
+        let cart = JSON.parse(localStorage.getItem('lumina_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('lumina_wishlist')) || [];
         let currentCategory = 'all';
-        let searchQuery = '';
         let currentSort = 'featured';
-        let activePromoDiscount = 0;
+        let searchQuery = '';
+        let appliedPromo = null;
 
-        // WHATSAPP CONFIGURATION
-        const STORE_WHATSAPP_NUMBER = "6285150945518"; 
-
-        // INITIALIZATION
+        /* ------------------------------------------------------------------ */
+        /* DOM INITIALIZATION                                                 */
+        /* ------------------------------------------------------------------ */
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             renderProducts();
-            updateCartBadge();
-            updateWishlistBadge();
-            initScrollReveal();
+            updateCartUI();
+            updateWishlistUI();
+            setupScrollReveal();
 
-            // Trigger promotional popup modal 1.5 seconds after page load
-            setTimeout(() => {
-                if (!sessionStorage.getItem('lumina_promo_dismissed')) {
+            // Auto-trigger promo modal after 5 seconds if not closed prior
+            if (!sessionStorage.getItem('promo_closed')) {
+                setTimeout(() => {
                     openPromoModal();
-                }
-            }, 1500);
+                }, 4000);
+            }
         });
 
-        /* ================= SCROLL REVEAL ANIMATION OBSERVER ================= */
-        function initScrollReveal() {
-            const revealElements = document.querySelectorAll('.scroll-reveal');
-            
-            if ('IntersectionObserver' in window) {
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px 0px -40px 0px',
-                    threshold: 0.1
-                };
-
-                const revealObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('is-visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, observerOptions);
-
-                revealElements.forEach(el => revealObserver.observe(el));
-            } else {
-                // Fallback for legacy browsers
-                revealElements.forEach(el => el.classList.add('is-visible'));
-            }
-        }
-
-        /* ================= THEME TOGGLE (DARK / LIGHT MODE) ================= */
+        /* ------------------------------------------------------------------ */
+        /* DARK MODE LOGIC                                                    */
+        /* ------------------------------------------------------------------ */
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            
-            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            const isDark = localStorage.getItem('lumina_theme') === 'dark' || 
+                (!('lumina_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
                 document.documentElement.classList.add('dark');
                 updateThemeIcon(true);
             } else {
@@ -1022,160 +1118,119 @@
 
         function toggleDarkMode() {
             const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('lumina_theme', isDark ? 'dark' : 'light');
             updateThemeIcon(isDark);
-            showToast(isDark ? "Mode Gelap diaktifkan 🌙" : "Mode Terang diaktifkan ☀️");
+            showToast(isDark ? 'Mode Gelap diaktifkan' : 'Mode Terang diaktifkan', 'fa-moon');
         }
 
         function updateThemeIcon(isDark) {
             const icon = document.getElementById('theme-toggle-icon');
             if (icon) {
-                icon.className = isDark ? "fa-solid fa-sun text-amber-400 text-lg" : "fa-solid fa-moon text-lg";
+                icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-lg' : 'fa-solid fa-moon text-lg';
             }
         }
 
-        /* ================= PROMOTIONAL POPUP MODAL LOGIC ================= */
-        function openPromoModal() {
-            const backdrop = document.getElementById('promo-modal-backdrop');
-            if (backdrop) {
-                backdrop.classList.remove('hidden');
-                backdrop.classList.add('flex');
-            }
-        }
-
-        function closePromoModal() {
-            const backdrop = document.getElementById('promo-modal-backdrop');
-            if (backdrop) {
-                backdrop.classList.add('hidden');
-                backdrop.classList.remove('flex');
-            }
-            sessionStorage.setItem('lumina_promo_dismissed', 'true');
-        }
-
-        function claimPromoOffer() {
-            const input = document.getElementById('promo-code-input');
-            if (input) {
-                input.value = "WELCOME10";
-            }
-            activePromoDiscount = 0.10; // 10% OFF
-            
-            closePromoModal();
-            showToast("🎉 Diskon 10% berhasil diklaim! Gunakan WELCOME10 saat checkout.");
-            
-            setTimeout(() => {
-                toggleCartDrawer();
-                applyPromoCode('WELCOME10');
-            }, 400);
-        }
-
-        function copyPromoCode() {
-            const codeText = document.getElementById('promo-code-text').innerText;
-            
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(codeText);
-            } else {
-                const tempInput = document.createElement("input");
-                tempInput.value = codeText;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand("copy");
-                document.body.removeChild(tempInput);
-            }
-
-            const copyBtn = document.getElementById('copy-code-btn');
-            if (copyBtn) {
-                copyBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-500"></i> <span>Tersalin!</span>`;
-                setTimeout(() => {
-                    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> <span>Salin</span>`;
-                }, 2000);
-            }
-            showToast("Kode promo WELCOME10 berhasil disalin!");
-        }
-
-        function formatRupiah(amount) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                maximumFractionDigits: 0
-            }).format(amount);
-        }
-
+        /* ------------------------------------------------------------------ */
+        /* PRODUCT CATALOG RENDERER & FILTERS                                 */
+        /* ------------------------------------------------------------------ */
         function renderProducts() {
-            const grid = document.getElementById('product-grid');
+            const container = document.getElementById('product-grid');
             const emptyState = document.getElementById('empty-state');
-            
-            let filtered = productsData.filter(product => {
-                const matchCategory = currentCategory === 'all' || product.category === currentCategory;
-                const matchSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                    product.description.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchCategory && matchSearch;
+            const countText = document.getElementById('product-count-text');
+
+            if (!container) return;
+
+            // Filter logic
+            let filtered = productsData.filter(item => {
+                const matchesCat = (currentCategory === 'all' || item.category === currentCategory);
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCat && matchesSearch;
             });
 
+            // Sort logic
             if (currentSort === 'price-low') {
                 filtered.sort((a, b) => a.price - b.price);
             } else if (currentSort === 'price-high') {
                 filtered.sort((a, b) => b.price - a.price);
             } else if (currentSort === 'rating') {
                 filtered.sort((a, b) => b.rating - a.rating);
+            } else {
+                // Default: featured / best seller first
+                filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
             }
 
-            document.getElementById('product-count-text').innerText = `Menampilkan ${filtered.length} dari ${productsData.length} produk`;
+            if (countText) {
+                countText.textContent = `Menampilkan ${filtered.length} produk`;
+            }
 
             if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
+                container.innerHTML = '';
+                if (emptyState) emptyState.classList.remove('hidden');
                 return;
             } else {
-                emptyState.classList.add('hidden');
+                if (emptyState) emptyState.classList.add('hidden');
             }
 
-            grid.innerHTML = filtered.map(product => {
+            container.innerHTML = filtered.map(product => {
                 const isWishlisted = wishlist.includes(product.id);
+                const formattedPrice = formatRupiah(product.price);
+                const formattedOrig = product.originalPrice ? formatRupiah(product.originalPrice) : null;
+
                 return `
-                    <div class="group product-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 p-3.5 flex flex-col justify-between relative transition-all duration-300">
-                        <div class="relative w-full h-56 rounded-2xl bg-slate-100 dark:bg-slate-800 overflow-hidden mb-3">
+                    <div class="product-card bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl overflow-hidden flex flex-col justify-between relative group">
+                        
+                        <!-- Badges & Wishlist Button -->
+                        <div class="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
+                            <div class="flex flex-col gap-1 pointer-events-auto">
+                                ${product.tags.map(tag => `
+                                    <span class="bg-slate-900/80 backdrop-blur-md text-white font-extrabold text-[9px] px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+                            <button onclick="toggleWishlist(${product.id})" class="pointer-events-auto w-9 h-9 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md shadow-md text-slate-400 hover:text-rose-500 flex items-center justify-center transition-colors">
+                                <i class="${isWishlisted ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'} text-sm"></i>
+                            </button>
+                        </div>
+
+                        <!-- Product Image -->
+                        <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-square cursor-pointer" onclick="openQuickView(${product.id})">
                             <img src="${product.image}" alt="${product.name}" class="product-card-img w-full h-full object-cover">
                             
-                            ${product.badge ? `<span class="absolute top-3 left-3 ${product.badgeColor || 'bg-slate-900'} text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm transition-transform duration-300 group-hover:scale-105">${product.badge}</span>` : ''}
-
-                            <button onclick="toggleWishlist(${product.id})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center justify-center transition-all duration-200 shadow-md hover:scale-110">
-                                <i class="${isWishlisted ? 'fa-solid text-rose-500' : 'fa-regular'} fa-heart text-sm transition-colors"></i>
-                            </button>
-
-                            <button onclick="openQuickView(${product.id})" class="absolute inset-x-4 bottom-3 bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-md text-white py-2 rounded-xl text-xs font-bold opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center space-x-1.5 shadow-lg">
-                                <i class="fa-regular fa-eye text-xs"></i>
-                                <span>Lihat Detail</span>
-                            </button>
+                            <!-- Quick View Hover Overlay -->
+                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="px-4 py-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                    <i class="fa-solid fa-eye mr-1.5"></i> Lihat Detail
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="space-y-2 flex-grow flex flex-col justify-between">
+                        <!-- Product Info -->
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
                             <div>
-                                <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-                                    <span class="uppercase font-extrabold tracking-wider text-[10px] text-brand-600 dark:text-brand-400">${product.category}</span>
-                                    <span class="text-amber-500 font-bold flex items-center"><i class="fa-solid fa-star mr-1"></i> ${product.rating}</span>
-                                </div>
-                                <h3 onclick="openQuickView(${product.id})" class="font-bold text-slate-900 dark:text-white text-sm group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-200 line-clamp-1 cursor-pointer">${product.name}</h3>
-                                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-relaxed">${product.description}</p>
-                            </div>
-
-                            <div class="pt-3 flex flex-col gap-2 border-t border-slate-100 dark:border-slate-800 mt-3">
-                                <div class="flex items-baseline justify-between">
-                                    <div>
-                                        <span class="text-base font-black text-slate-900 dark:text-white font-sans">${formatRupiah(product.price)}</span>
-                                        ${product.originalPrice ? `<span class="text-[11px] text-slate-400 line-through ml-1.5 font-normal">${formatRupiah(product.originalPrice)}</span>` : ''}
+                                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                    <span class="uppercase font-bold text-[10px] tracking-wider text-brand-600 dark:text-brand-400">${product.category}</span>
+                                    <div class="flex items-center space-x-1 text-amber-400 font-bold">
+                                        <i class="fa-solid fa-star text-[10px]"></i>
+                                        <span>${product.rating}</span>
+                                        <span class="text-slate-400 font-normal">(${product.reviewsCount})</span>
                                     </div>
                                 </div>
+                                <h3 onclick="openQuickView(${product.id})" class="font-bold text-slate-900 dark:text-white text-sm line-clamp-2 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors">
+                                    ${product.name}
+                                </h3>
+                            </div>
 
-                                <div class="grid grid-cols-5 gap-1.5">
-                                    <button onclick="buyNowWhatsApp(${product.id})" title="Beli Langsung via WhatsApp" class="col-span-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-extrabold text-xs flex items-center justify-center space-x-1.5 transition-all duration-300 shadow-sm hover:shadow-emerald-500/25 hover:scale-[1.02]">
-                                        <i class="fa-brands fa-whatsapp text-sm transition-transform group-hover:rotate-6"></i>
-                                        <span class="font-semibold text-[11px]">Beli via WA</span>
-                                    </button>
-
-                                    <button onclick="quickAddToCart(${product.id})" title="Tambah ke Keranjang" class="col-span-1 h-9 rounded-xl gradient-btn text-white flex items-center justify-center shadow-md hover:scale-110 active:scale-95 transition-transform duration-200">
-                                        <i class="fa-solid fa-plus text-xs"></i>
-                                    </button>
+                            <div class="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                                <div>
+                                    <div class="text-base font-black text-slate-900 dark:text-white">${formattedPrice}</div>
+                                    ${formattedOrig ? `<div class="text-[11px] text-slate-400 line-through">${formattedOrig}</div>` : ''}
                                 </div>
+                                <button onclick="addToCart(${product.id})" class="px-3.5 py-2.5 bg-brand-600 hover:bg-brand-700 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-md flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <span>Beli</span>
+                                </button>
                             </div>
                         </div>
 
@@ -1184,369 +1239,44 @@
             }).join('');
         }
 
-        function buyNowWhatsApp(productId) {
-            const product = productsData.find(p => p.id === productId);
-            if (!product) return;
-
-            const message = `Halo LUMINA Store! 👋\n\nSaya ingin membeli produk ini secara langsung:\n🛍️ *Nama Produk:* ${product.name}\n💰 *Harga:* ${formatRupiah(product.price)}\n📌 *Kode Produk:* #${product.id}\n\nMohon konfirmasi ketersediaan stok dan metode pembayaran. Terima kasih!`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
-
-        function quickAddToCart(productId) {
-            const existingIndex = cart.findIndex(item => item.id === productId);
-            if (existingIndex > -1) {
-                cart[existingIndex].quantity += 1;
-            } else {
-                cart.push({ id: productId, quantity: 1 });
-            }
-            updateCartBadge();
-            renderCartItems();
-            showToast("Produk berhasil ditambahkan ke keranjang!");
-        }
-
-        function updateCartBadge() {
-            const badge = document.getElementById('cart-badge');
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cart-items-count-badge').innerText = `${totalCount} Barang`;
-            
-            if (totalCount > 0) {
-                badge.innerText = totalCount;
-                badge.classList.remove('scale-0');
-            } else {
-                badge.classList.add('scale-0');
-            }
-        }
-
-        function renderCartItems() {
-            const container = document.getElementById('cart-items-container');
-            
-            if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-slate-400 space-y-3">
-                        <i class="fa-solid fa-basket-shopping text-4xl text-slate-300 dark:text-slate-700"></i>
-                        <p class="text-xs font-semibold">Keranjang belanja Anda masih kosong.</p>
-                        <button onclick="toggleCartDrawer()" class="px-4 py-2 bg-slate-900 dark:bg-slate-800 text-white text-xs font-bold rounded-xl">Mulai Belanja</button>
-                    </div>
-                `;
-                updateCartTotals(0);
-                return;
-            }
-
-            let subtotal = 0;
-
-            container.innerHTML = cart.map(item => {
-                const product = productsData.find(p => p.id === item.id);
-                if (!product) return '';
-                const itemTotal = product.price * item.quantity;
-                subtotal += itemTotal;
-
-                return `
-                    <div class="flex items-center space-x-3 pt-3 first:pt-0">
-                        <img src="${product.image}" alt="${product.name}" class="w-14 h-14 rounded-xl object-cover bg-slate-100 dark:bg-slate-800 flex-shrink-0">
-                        <div class="flex-grow min-w-0">
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs truncate">${product.name}</h4>
-                            <p class="text-[11px] text-brand-600 dark:text-brand-400 font-bold font-sans">${formatRupiah(product.price)}</p>
-                            <div class="flex items-center space-x-2 mt-1">
-                                <button onclick="changeCartQty(${product.id}, -1)" class="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-[10px] font-bold">-</button>
-                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">${item.quantity}</span>
-                                <button onclick="changeCartQty(${product.id}, 1)" class="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-[10px] font-bold">+</button>
-                            </div>
-                        </div>
-                        <button onclick="removeFromCart(${product.id})" class="text-slate-400 hover:text-rose-500 text-xs p-1">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                `;
-            }).join('');
-
-            updateCartTotals(subtotal);
-        }
-
-        function changeCartQty(productId, delta) {
-            const index = cart.findIndex(item => item.id === productId);
-            if (index > -1) {
-                cart[index].quantity += delta;
-                if (cart[index].quantity <= 0) {
-                    cart.splice(index, 1);
-                }
-            }
-            updateCartBadge();
-            renderCartItems();
-        }
-
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartBadge();
-            renderCartItems();
-            showToast("Produk dihapus dari keranjang.");
-        }
-
-        function clearCart() {
-            cart = [];
-            updateCartBadge();
-            renderCartItems();
-        }
-
-        function updateCartTotals(subtotal) {
-            const discount = (subtotal * activePromoDiscount);
-            const total = Math.max(0, subtotal - discount);
-
-            document.getElementById('cart-subtotal').innerText = formatRupiah(subtotal);
-            document.getElementById('cart-discount').innerText = `- ${formatRupiah(discount)}`;
-            document.getElementById('cart-total').innerText = formatRupiah(total);
-        }
-
-        function applyPromoCode(overrideCode) {
-            const inputVal = overrideCode || document.getElementById('promo-code-input').value.trim().toUpperCase();
-            const msg = document.getElementById('promo-msg');
-            
-            if (inputVal === 'LUMINA50') {
-                activePromoDiscount = 0.5;
-                msg.innerText = "✓ Kupon LUMINA50 (Diskon 50%) Berhasil Dipasang!";
-                msg.className = "text-[11px] font-bold text-emerald-600 dark:text-emerald-400";
-                msg.classList.remove('hidden');
-            } else if (inputVal === 'WELCOME10') {
-                activePromoDiscount = 0.1;
-                msg.innerText = "✓ Kupon WELCOME10 (Diskon 10%) Berhasil Dipasang!";
-                msg.className = "text-[11px] font-bold text-emerald-600 dark:text-emerald-400";
-                msg.classList.remove('hidden');
-            } else if (inputVal === '') {
-                activePromoDiscount = 0;
-                msg.classList.add('hidden');
-            } else {
-                activePromoDiscount = 0;
-                msg.innerText = "❌ Kode kupon tidak valid.";
-                msg.className = "text-[11px] font-bold text-rose-500";
-                msg.classList.remove('hidden');
-            }
-            renderCartItems();
-        }
-
-        function checkoutCartWhatsApp() {
-            if (cart.length === 0) {
-                showToast("Keranjang Anda masih kosong!");
-                return;
-            }
-
-            let message = `Halo LUMINA Store! 👋\n\nSaya ingin memesan seluruh barang di keranjang belanja saya:\n\n`;
-            let subtotal = 0;
-
-            cart.forEach((item, index) => {
-                const product = productsData.find(p => p.id === item.id);
-                if (product) {
-                    const itemTotal = product.price * item.quantity;
-                    subtotal += itemTotal;
-                    message += `${index + 1}. *${product.name}*\n   ${item.quantity}x @ ${formatRupiah(product.price)} = ${formatRupiah(itemTotal)}\n`;
-                }
-            });
-
-            const discount = (subtotal * activePromoDiscount);
-            const total = subtotal - discount;
-
-            message += `\n------------------------`;
-            message += `\nSubtotal: ${formatRupiah(subtotal)}`;
-            if (activePromoDiscount > 0) {
-                message += `\nDiskon Promo: -${formatRupiah(discount)}`;
-            }
-            message += `\n*TOTAL PEMBAYARAN: ${formatRupiah(total)}*`;
-            message += `\n------------------------`;
-            message += `\n\nMohon petunjuk metode pembayaran dan alamat pengiriman. Terima kasih!`;
-
-            window.open(`https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        function toggleWishlist(productId) {
-            const index = wishlist.indexOf(productId);
-            if (index > -1) {
-                wishlist.splice(index, 1);
-                showToast("Dihapus dari wishlist");
-            } else {
-                wishlist.push(productId);
-                showToast("Ditambahkan ke wishlist!");
-            }
-            updateWishlistBadge();
-            renderProducts();
-            renderWishlistItems();
-        }
-
-        function updateWishlistBadge() {
-            const badge = document.getElementById('wishlist-badge');
-            if (wishlist.length > 0) {
-                badge.innerText = wishlist.length;
-                badge.classList.remove('scale-0');
-            } else {
-                badge.classList.add('scale-0');
-            }
-        }
-
-        function renderWishlistItems() {
-            const container = document.getElementById('wishlist-items-container');
-            if (wishlist.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 text-slate-400 space-y-2">
-                        <i class="fa-regular fa-heart text-3xl"></i>
-                        <p class="text-xs font-semibold">Wishlist Anda masih kosong.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = wishlist.map(id => {
-                const product = productsData.find(p => p.id === id);
-                if (!product) return '';
-                return `
-                    <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <div class="flex items-center space-x-3">
-                            <img src="${product.image}" class="w-12 h-12 rounded-xl object-cover">
-                            <div>
-                                <h4 class="font-bold text-xs text-slate-900 dark:text-white line-clamp-1">${product.name}</h4>
-                                <span class="text-xs font-black text-brand-600 dark:text-brand-400">${formatRupiah(product.price)}</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                            <button onclick="quickAddToCart(${product.id})" class="p-2 bg-brand-600 text-white rounded-xl text-xs"><i class="fa-solid fa-plus"></i></button>
-                            <button onclick="toggleWishlist(${product.id})" class="p-2 text-slate-400 hover:text-rose-500 text-xs"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openQuickView(productId) {
-            const product = productsData.find(p => p.id === productId);
-            if (!product) return;
-
-            const content = document.getElementById('quickview-content');
-
-            content.innerHTML = `
-                <div class="w-full h-64 md:h-80 rounded-2xl bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
-                    <img id="qv-main-image" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
-                    ${product.badge ? `<span class="absolute top-3 left-3 ${product.badgeColor || 'bg-slate-900'} text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">${product.badge}</span>` : ''}
-                </div>
-                <div class="space-y-4 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <span class="text-[10px] font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-wider">${product.category}</span>
-                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full"><i class="fa-solid fa-check-circle mr-1"></i>Stok Tersedia</span>
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-black text-slate-900 dark:text-white leading-snug">${product.name}</h3>
-                        <div class="flex items-center space-x-2 text-xs text-amber-500 font-bold mt-1">
-                            <span>★ ${product.rating}</span>
-                            <span class="text-slate-400 font-normal">(${product.reviews} ulasan pembeli)</span>
-                        </div>
-                    </div>
-
-                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${product.description}</p>
-
-                    <div class="grid grid-cols-2 gap-2 text-[11px] bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800">
-                        <div><i class="fa-solid fa-truck-fast text-brand-600 dark:text-brand-400 mr-1"></i> <strong>Kirim:</strong> 24-48 Jam</div>
-                        <div><i class="fa-solid fa-shield text-brand-600 dark:text-brand-400 mr-1"></i> <strong>Garansi:</strong> 100% Produk Asli</div>
-                        <div><i class="fa-solid fa-rotate-left text-brand-600 dark:text-brand-400 mr-1"></i> <strong>Retur:</strong> Ganti Baru jika Bocor</div>
-                        <div><i class="fa-solid fa-award text-brand-600 dark:text-brand-400 mr-1"></i> <strong>Kualitas:</strong> Higienis & Halal</div>
-                    </div>
-
-                    <div class="text-2xl font-black text-slate-900 dark:text-white font-sans">
-                        ${formatRupiah(product.price)}
-                        ${product.originalPrice ? `<span class="text-xs text-slate-400 line-through font-normal ml-2">${formatRupiah(product.originalPrice)}</span>` : ''}
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                        <button onclick="buyNowWhatsApp(${product.id})" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 shadow-glow-emerald transition-all hover:scale-[1.02]">
-                            <i class="fa-brands fa-whatsapp text-base"></i>
-                            <span>Beli via WhatsApp</span>
-                        </button>
-                        <button onclick="quickAddToCart(${product.id}); closeQuickView();" class="w-full py-3 gradient-btn text-white font-extrabold rounded-xl text-xs flex items-center justify-center space-x-2 shadow-md transition-all hover:scale-[1.02]">
-                            <i class="fa-solid fa-cart-plus"></i>
-                            <span>Tambah Keranjang</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('quickview-modal-backdrop').classList.remove('hidden');
-        }
-
-        function closeQuickView() {
-            document.getElementById('quickview-modal-backdrop').classList.add('hidden');
-        }
-
-        function toggleCartDrawer() {
-            const drawer = document.getElementById('cart-drawer');
-            const backdrop = document.getElementById('cart-drawer-backdrop');
-
-            if (drawer.classList.contains('translate-x-full')) {
-                drawer.classList.remove('translate-x-full');
-                backdrop.classList.remove('hidden');
-                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
-                renderCartItems();
-            } else {
-                drawer.classList.add('translate-x-full');
-                backdrop.classList.add('opacity-0');
-                setTimeout(() => backdrop.classList.add('hidden'), 300);
-            }
-        }
-
-        function toggleWishlistDrawer() {
-            const drawer = document.getElementById('wishlist-drawer');
-            const backdrop = document.getElementById('wishlist-drawer-backdrop');
-
-            if (drawer.classList.contains('translate-x-full')) {
-                drawer.classList.remove('translate-x-full');
-                backdrop.classList.remove('hidden');
-                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
-                renderWishlistItems();
-            } else {
-                drawer.classList.add('translate-x-full');
-                backdrop.classList.add('opacity-0');
-                setTimeout(() => backdrop.classList.add('hidden'), 300);
-            }
-        }
-
-        function filterCategory(category) {
-            currentCategory = category;
-            
+        function filterCategory(cat) {
+            currentCategory = cat;
             document.querySelectorAll('.cat-pill').forEach(btn => {
-                btn.className = "cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all";
+                btn.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
             });
-            
-            const activeBtn = document.getElementById(`cat-${category}`);
+            const activeBtn = document.getElementById(`cat-${cat}`);
             if (activeBtn) {
-                activeBtn.className = "cat-pill active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-brand-600 text-white shadow-md transition-all";
+                activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
             }
-
             renderProducts();
         }
 
         function handleSearch() {
-            searchQuery = document.getElementById('search-input').value;
+            const input = document.getElementById('search-input');
             const clearBtn = document.getElementById('clear-search-btn');
-            if (searchQuery.length > 0) {
-                clearBtn.classList.remove('hidden');
-            } else {
-                clearBtn.classList.add('hidden');
+            searchQuery = input ? input.value : '';
+            if (clearBtn) {
+                if (searchQuery.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
             }
             renderProducts();
         }
 
         function handleSearchMobile() {
-            searchQuery = document.getElementById('search-input-mobile').value;
+            const input = document.getElementById('search-input-mobile');
+            searchQuery = input ? input.value : '';
             renderProducts();
         }
 
         function clearSearch() {
-            document.getElementById('search-input').value = '';
             searchQuery = '';
-            document.getElementById('clear-search-btn').classList.add('hidden');
-            renderProducts();
-        }
-
-        function toggleMobileSearch() {
-            const bar = document.getElementById('mobile-search-bar');
-            bar.classList.toggle('hidden');
+            const input1 = document.getElementById('search-input');
+            const input2 = document.getElementById('search-input-mobile');
+            if (input1) input1.value = '';
+            if (input2) input2.value = '';
+            handleSearch();
         }
 
         function handleSortChange(val) {
@@ -1558,27 +1288,416 @@
             searchQuery = '';
             currentCategory = 'all';
             currentSort = 'featured';
-            document.getElementById('search-input').value = '';
-            document.getElementById('sort-select').value = 'featured';
+            clearSearch();
             filterCategory('all');
         }
 
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').innerText = message;
-            toast.classList.remove('hidden');
-            toast.classList.add('flex');
-
-            setTimeout(() => {
-                toast.classList.add('hidden');
-                toast.classList.remove('flex');
-            }, 2500);
+        function toggleMobileSearch() {
+            const bar = document.getElementById('mobile-search-bar');
+            if (bar) bar.classList.toggle('hidden');
         }
 
-        function subscribeNewsletter(e) {
-            e.preventDefault();
-            showToast("Terima kasih! Anda berhasil mendaftar promo newsletter.");
-            e.target.reset();
+        /* ------------------------------------------------------------------ */
+        /* CART & WISHLIST LOGIC                                              */
+        /* ------------------------------------------------------------------ */
+        function addToCart(productId, qty = 1) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existingIndex = cart.findIndex(item => item.id === productId);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += qty;
+            } else {
+                cart.push({ ...product, quantity: qty });
+            }
+
+            saveCart();
+            updateCartUI();
+            showToast(`${product.name} telah masuk keranjang!`, 'fa-cart-shopping');
+        }
+
+        function updateCartQuantity(productId, delta) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            saveCart();
+            updateCartUI();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+        }
+
+        function clearCart() {
+            if (cart.length === 0) return;
+            cart = [];
+            appliedPromo = null;
+            saveCart();
+            updateCartUI();
+            showToast('Keranjang telah dikosongkan', 'fa-trash');
+        }
+
+        function saveCart() {
+            localStorage.setItem('lumina_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const drawerBadge = document.getElementById('cart-items-count-badge');
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const discountEl = document.getElementById('cart-discount');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (badge) {
+                badge.textContent = totalItems;
+                badge.style.transform = totalItems > 0 ? 'scale(1)' : 'scale(0)';
+            }
+            if (drawerBadge) drawerBadge.textContent = `${totalItems} Barang`;
+
+            if (!container) return;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-slate-400">
+                        <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-slate-300 dark:text-slate-700"></i>
+                        <p class="text-xs font-semibold">Keranjang belanja Anda masih kosong</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="py-3 flex items-center space-x-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl border border-slate-200 dark:border-slate-800 flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-white truncate">${item.name}</h4>
+                            <div class="text-xs font-black text-brand-600 dark:text-brand-400 mt-0.5">${formatRupiah(item.price)}</div>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <button onclick="updateCartQuantity(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">-</button>
+                                <span class="text-xs font-bold text-slate-800 dark:text-white px-1">${item.quantity}</span>
+                                <button onclick="updateCartQuantity(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-slate-400 hover:text-rose-500 text-xs p-1">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let discount = 0;
+            if (appliedPromo === 'WELCOME10') {
+                discount = Math.round(subtotal * 0.10);
+            } else if (appliedPromo === 'LUMINA50') {
+                discount = Math.min(50000, Math.round(subtotal * 0.50));
+            }
+
+            const total = Math.max(0, subtotal - discount);
+
+            if (subtotalEl) subtotalEl.textContent = formatRupiah(subtotal);
+            if (discountEl) discountEl.textContent = `- ${formatRupiah(discount)}`;
+            if (totalEl) totalEl.textContent = formatRupiah(total);
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promo-code-input');
+            const msg = document.getElementById('promo-msg');
+            if (!input || !msg) return;
+
+            const code = input.value.trim().toUpperCase();
+            if (code === 'WELCOME10' || code === 'LUMINA50') {
+                appliedPromo = code;
+                msg.className = "text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 block";
+                msg.textContent = `Voucher ${code} berhasil dipasang!`;
+                updateCartUI();
+            } else {
+                msg.className = "text-[11px] font-semibold text-rose-500 block";
+                msg.textContent = "Kode promo tidak valid!";
+            }
+        }
+
+        function toggleWishlist(productId) {
+            const index = wishlist.indexOf(productId);
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast('Dihapus dari Wishlist', 'fa-heart-crack');
+            } else {
+                wishlist.push(productId);
+                showToast('Ditambahkan ke Wishlist', 'fa-heart');
+            }
+            localStorage.setItem('lumina_wishlist', JSON.stringify(wishlist));
+            updateWishlistUI();
+            renderProducts();
+        }
+
+        function updateWishlistUI() {
+            const badge = document.getElementById('wishlist-badge');
+            const container = document.getElementById('wishlist-items-container');
+
+            if (badge) {
+                badge.textContent = wishlist.length;
+                badge.style.transform = wishlist.length > 0 ? 'scale(1)' : 'scale(0)';
+            }
+
+            if (!container) return;
+
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center text-slate-400">
+                        <i class="fa-regular fa-heart text-4xl mb-3 text-slate-300 dark:text-slate-700"></i>
+                        <p class="text-xs font-semibold">Wishlist Anda belum memiliki produk favorit</p>
+                    </div>
+                `;
+            } else {
+                const wishItems = productsData.filter(p => wishlist.includes(p.id));
+                container.innerHTML = wishItems.map(item => `
+                    <div class="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 rounded-2xl flex items-center justify-between space-x-3">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded-xl flex-shrink-0">
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xs font-bold text-slate-900 dark:text-white truncate">${item.name}</h4>
+                            <div class="text-xs font-black text-brand-600 dark:text-brand-400">${formatRupiah(item.price)}</div>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="addToCart(${item.id})" class="p-2 bg-brand-600 text-white rounded-xl text-xs hover:bg-brand-700">
+                                <i class="fa-solid fa-cart-plus"></i>
+                            </button>
+                            <button onclick="toggleWishlist(${item.id})" class="p-2 text-slate-400 hover:text-rose-500 text-xs">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* WHATSAPP CHECKOUT GENERATOR                                        */
+        /* ------------------------------------------------------------------ */
+        function checkoutCartWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Keranjang Anda masih kosong!', 'fa-circle-exclamation');
+                return;
+            }
+
+            let message = "Halo LUMINA Luxe Store, saya ingin melakukan pemesanan:\n\n";
+            let subtotal = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                message += `${index + 1}. *${item.name}*\n   ${item.quantity} x ${formatRupiah(item.price)} = ${formatRupiah(itemTotal)}\n`;
+            });
+
+            let discount = 0;
+            if (appliedPromo === 'WELCOME10') discount = Math.round(subtotal * 0.10);
+            else if (appliedPromo === 'LUMINA50') discount = Math.min(50000, Math.round(subtotal * 0.50));
+
+            const total = Math.max(0, subtotal - discount);
+
+            message += `\nSubtotal: ${formatRupiah(subtotal)}`;
+            if (discount > 0) message += `\nPromo (${appliedPromo}): -${formatRupiah(discount)}`;
+            message += `\n*TOTAL BAYAR: ${formatRupiah(total)}*\n\nMohon informasi ongkir dan rekening pembayaran. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6285150945518?text=${encodedMessage}`, '_blank');
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* MODAL & DRAWER TOGGLES                                             */
+        /* ------------------------------------------------------------------ */
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-drawer-backdrop');
+            if (!drawer || !backdrop) return;
+
+            const isOpen = !drawer.classList.contains('translate-x-full');
+            if (isOpen) {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            } else {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-x-full');
+            }
+        }
+
+        function toggleWishlistDrawer() {
+            const drawer = document.getElementById('wishlist-drawer');
+            const backdrop = document.getElementById('wishlist-drawer-backdrop');
+            if (!drawer || !backdrop) return;
+
+            const isOpen = !drawer.classList.contains('translate-x-full');
+            if (isOpen) {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+            } else {
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+                drawer.classList.remove('translate-x-full');
+            }
+        }
+
+        function openQuickView(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const modal = document.getElementById('quickview-modal-backdrop');
+            const content = document.getElementById('quickview-content');
+            if (!product || !modal || !content) return;
+
+            content.innerHTML = `
+                <div class="bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex flex-col justify-between space-y-4">
+                    <div>
+                        <span class="text-[10px] font-black uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 px-2.5 py-1 rounded-full border border-brand-200 dark:border-brand-800">
+                            ${product.category}
+                        </span>
+                        <h2 class="text-xl font-extrabold text-slate-900 dark:text-white mt-2 mb-1">${product.name}</h2>
+                        <div class="flex items-center space-x-2 text-xs text-amber-400 font-bold mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <span>${product.rating}</span>
+                            <span class="text-slate-400 font-normal">(${product.reviewsCount} Ulasan)</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${product.description}</p>
+                    </div>
+
+                    <div class="space-y-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div class="flex items-baseline space-x-2">
+                            <span class="text-2xl font-black text-slate-900 dark:text-white">${formatRupiah(product.price)}</span>
+                            ${product.originalPrice ? `<span class="text-xs text-slate-400 line-through">${formatRupiah(product.originalPrice)}</span>` : ''}
+                        </div>
+                        <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full py-3.5 gradient-btn text-white font-extrabold rounded-2xl text-xs shadow-glow flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>Tambah ke Keranjang</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            const modal = document.getElementById('quickview-modal-backdrop');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        /* PROMO MODAL HANDLERS */
+        function openPromoModal() {
+            const modal = document.getElementById('promo-modal-backdrop');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closePromoModal() {
+            const modal = document.getElementById('promo-modal-backdrop');
+            if (modal) modal.classList.add('hidden');
+            sessionStorage.setItem('promo_closed', 'true');
+        }
+
+        function copyPromoCode() {
+            const codeText = document.getElementById('promo-code-text')?.innerText || 'WELCOME10';
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = codeText;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            const copyBtn = document.getElementById('copy-code-btn');
+            if (copyBtn) {
+                copyBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-500"></i><span>Tersalin!</span>`;
+                setTimeout(() => {
+                    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i><span>Salin</span>`;
+                }, 2000);
+            }
+            showToast(`Kode ${codeText} tersalin!`, 'fa-copy');
+        }
+
+        function claimPromoOffer() {
+            appliedPromo = 'WELCOME10';
+            const input = document.getElementById('promo-code-input');
+            if (input) input.value = 'WELCOME10';
+            applyPromoCode();
+            closePromoModal();
+            toggleCartDrawer();
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* UTILITY HELPERS                                                    */
+        /* ------------------------------------------------------------------ */
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(number);
+        }
+
+        let toastTimer;
+        function showToast(msg, iconClass = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            if (!toast || !toastMsg) return;
+
+            toastMsg.textContent = msg;
+            if (toastIcon) toastIcon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+
+            toast.classList.remove('hidden');
+            toast.style.opacity = '1';
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3000);
+        }
+
+        function setupScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        }
+
+        /* FAQ ACCORDION TOGGLE HANDLER */
+        function toggleFaq(buttonEl) {
+            const currentItem = buttonEl.closest('.faq-item');
+            const allItems = document.querySelectorAll('.faq-item');
+            
+            allItems.forEach(item => {
+                if (item !== currentItem) {
+                    item.classList.remove('active');
+                    item.classList.remove('border-brand-500/30', 'dark:border-brand-500/40');
+                    item.classList.add('border-slate-200/80', 'dark:border-slate-800');
+                }
+            });
+
+            const isActive = currentItem.classList.toggle('active');
+            if (isActive) {
+                currentItem.classList.remove('border-slate-200/80', 'dark:border-slate-800');
+                currentItem.classList.add('border-brand-500/30', 'dark:border-brand-500/40');
+            } else {
+                currentItem.classList.remove('border-brand-500/30', 'dark:border-brand-500/40');
+                currentItem.classList.add('border-slate-200/80', 'dark:border-slate-800');
+            }
         }
     </script>
 </body>
