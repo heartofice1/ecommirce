@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMINA - Premium Digital Store & Local Delights</title>
+    <title>LUMINA - Product Showcase & Interactive Detail View</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Plus Jakarta Sans -->
+    <!-- Google Fonts Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,7 +39,6 @@
                     boxShadow: {
                         'glow': '0 0 25px -5px rgba(99, 102, 241, 0.4)',
                         'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.4)',
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
                     }
                 }
             }
@@ -48,18 +47,12 @@
     
     <style>
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .dark .glass-nav {
-            background: rgba(15, 23, 42, 0.85);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: rgba(15, 23, 42, 0.88);
         }
         .gradient-btn {
             background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
@@ -75,727 +68,496 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        @keyframes modalPop {
-            0% { opacity: 0; transform: scale(0.95) translateY(12px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+        button, a, input, select {
+            transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
         }
-        .animate-modal-pop {
-            animation: modalPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Subtle Scroll Reveal Animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        .scroll-reveal.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .scroll-reveal {
-                opacity: 1 !important;
-                transform: none !important;
-                transition: none !important;
-            }
-        }
-
-        /* Smooth Global Hover & Active Animations for All Buttons & Interactive Elements */
-        button, a, input, select, .cat-pill {
-            transition: color 0.25s ease, 
-                        background-color 0.25s ease, 
-                        border-color 0.25s ease, 
-                        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.25s ease !important;
-            will-change: transform, box-shadow, opacity;
-        }
-
-        button:hover, a.gradient-btn:hover, .cat-pill:hover {
-            transform: translateY(-2px) scale(1.02) !important;
-            box-shadow: 0 10px 22px -6px rgba(99, 102, 241, 0.22), 0 4px 8px -2px rgba(0, 0, 0, 0.08) !important;
-            filter: brightness(1.04);
-        }
-
-        button:active, a.gradient-btn:active, .cat-pill:active {
-            transform: translateY(0) scale(0.97) !important;
-            box-shadow: 0 3px 8px -2px rgba(0, 0, 0, 0.08) !important;
-        }
-
-        /* Navigation Underline Micro-interaction */
-        .nav-link {
-            position: relative;
-            transition: color 0.2s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0%;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(90deg, #4f46e5, #ec4899);
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 99px;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Modern Product Card Hover & Image Scale Effects */
         .product-card {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.3s ease !important;
-            will-change: transform, box-shadow;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
-
         .product-card:hover {
             transform: translateY(-6px) !important;
-            box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.16), 0 8px 16px -4px rgba(0, 0, 0, 0.05) !important;
+            box-shadow: 0 18px 36px -8px rgba(99, 102, 241, 0.18), 0 8px 16px -4px rgba(0, 0, 0, 0.05) !important;
         }
-
         .dark .product-card:hover {
-            box-shadow: 0 18px 32px -8px rgba(99, 102, 241, 0.28), 0 8px 20px -4px rgba(0, 0, 0, 0.4) !important;
+            box-shadow: 0 20px 36px -8px rgba(99, 102, 241, 0.3), 0 8px 20px -4px rgba(0, 0, 0, 0.5) !important;
         }
-
         .product-card-img {
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease !important;
-            will-change: transform, filter;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
-
         .product-card:hover .product-card-img {
             transform: scale(1.06) !important;
-            filter: brightness(1.03);
         }
-
-        /* Smooth Icon Scaling */
-        .icon-scale {
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        .fade-in-view {
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-        .icon-scale:hover {
-            transform: scale(1.15) rotate(3deg);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Modern FAQ Accordion Smooth Animations */
-        .faq-wrapper {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            opacity: 0;
-        }
-        .faq-item.active .faq-wrapper {
-            grid-template-rows: 1fr;
-            opacity: 1;
-        }
-        .faq-icon {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-        }
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
+        /* Slider Smooth Scrolling */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen transition-colors duration-300">
 
-    <!-- ANNOUNCEMENT BAR -->
     <div class="bg-gradient-to-r from-brand-900 via-brand-700 to-indigo-900 text-white text-xs py-2 px-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2 overflow-hidden">
-                <span class="bg-pink-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">FLASH SALE</span>
-                <span class="truncate font-medium text-slate-200">Diskon hingga 50% untuk Produk Pilihan! Gunakan Kode: <strong class="text-amber-300">LUMINA50</strong></span>
+                <span class="bg-pink-500 text-white font-extrabold text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">PROMO SPESIAL</span>
+                <span class="truncate font-medium text-slate-200">Gunakan voucher <strong class="text-amber-300 font-mono">LUMINA10</strong> untuk diskon 10% setiap pemesanan!</span>
             </div>
             <div class="hidden sm:flex items-center space-x-4 text-[11px] text-slate-300">
-                <a href="#about" class="hover:text-white transition-colors"><i class="fa-solid fa-circle-info mr-1"></i>Tentang Kami</a>
-                <span>|</span>
-                <a href="#reviews" class="hover:text-white transition-colors"><i class="fa-solid fa-star mr-1"></i>Ulasan</a>
+                <span><i class="fa-solid fa-warehouse mr-1 text-emerald-400"></i> Stok Gudang Pusat Jakarta</span>
                 <span>|</span>
                 <a href="https://wa.me/6285150945518" target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
-                    <i class="fa-brands fa-whatsapp"></i> Customer Care
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> Customer Support WA
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/60 dark:border-slate-800 transition-all duration-300">
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 dark:border-slate-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 gap-4">
                 
-                <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2 group">
+                <!-- Logo & Catalog Link -->
+                <button onclick="navigateToCatalog()" class="flex items-center space-x-3 group text-left focus:outline-none">
                     <div class="w-10 h-10 rounded-xl gradient-btn flex items-center justify-center text-white font-black text-xl shadow-glow group-hover:scale-105 transition-transform">
                         L
                     </div>
                     <div class="flex flex-col">
                         <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">LUMINA<span class="text-brand-600">.</span></span>
-                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest -mt-1">LOCAL & LUXE STORE</span>
+                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest -mt-1">OFFICIAL STORE & WAREHOUSE</span>
                     </div>
-                </a>
+                </button>
 
-                <!-- Desktop Nav Links -->
-                <nav class="hidden lg:flex items-center space-x-6 text-xs font-bold text-slate-600 dark:text-slate-300">
-                    <a href="#catalog" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Katalog</a>
-                    <a href="#about" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Tentang Kami</a>
-                    <a href="#reviews" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">Ulasan Pembeli</a>
-                    <a href="#faq" class="nav-link hover:text-brand-600 dark:hover:text-brand-400">FAQ</a>
-                </nav>
-
-                <!-- Search Bar (Desktop) -->
+                <!-- Search Bar -->
                 <div class="hidden md:flex flex-1 max-w-sm relative">
-                    <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari barang (Sambal Cumi, Headphone)..." 
-                        class="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl py-2.5 pl-11 pr-4 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-slate-900 transition-all duration-300 shadow-inner text-slate-800 dark:text-white">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm transition-colors duration-200"></i>
-                    <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-3 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs transition-colors">
+                    <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari barang (Sambal, Headphone, Smartwatch)..." 
+                        class="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-2xl py-2.5 pl-11 pr-4 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white dark:focus:bg-slate-900 transition-all shadow-inner text-slate-800 dark:text-white">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400 text-sm"></i>
+                    <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-3 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
-                <!-- Action Icons -->
+                <!-- Action Nav Icons -->
                 <div class="flex items-center space-x-1 sm:space-x-2">
-                    <!-- Dark Mode Toggle Button -->
-                    <button onclick="toggleDarkMode()" id="theme-toggle-btn" title="Ganti Mode Gelap/Terang" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-300 group">
-                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                    <button onclick="navigateToCatalog()" class="hidden sm:flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 rounded-xl">
+                        <i class="fa-solid fa-grip text-brand-500"></i> Katalog Produk
                     </button>
 
-                    <!-- Wishlist Button -->
-                    <button onclick="toggleWishlistDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative transition-all duration-300">
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" id="theme-toggle-btn" title="Ganti Mode Gelap/Terang" class="p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+                        <i id="theme-toggle-icon" class="fa-solid fa-moon text-lg"></i>
+                    </button>
+
+                    <!-- Wishlist Trigger -->
+                    <button onclick="toggleWishlistDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative">
                         <i class="fa-regular fa-heart text-lg"></i>
-                        <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm transform scale-0 transition-transform duration-300 ease-out">0</span>
+                        <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm transform scale-0 transition-transform">0</span>
                     </button>
 
-                    <!-- Cart Button -->
-                    <button onclick="toggleCartDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative transition-all duration-300">
+                    <!-- Cart Trigger -->
+                    <button onclick="toggleCartDrawer()" class="p-2.5 text-slate-600 dark:text-slate-300 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl relative">
                         <i class="fa-solid fa-bag-shopping text-lg"></i>
-                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-glow transform scale-0 transition-transform duration-300 ease-out">0</span>
-                    </button>
-
-                    <!-- Mobile Search Trigger -->
-                    <button onclick="toggleMobileSearch()" class="md:hidden p-2.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
-                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-glow transform scale-0 transition-transform">0</span>
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <!-- Mobile Search Dropdown -->
-        <div id="mobile-search-bar" class="hidden md:hidden px-4 pb-4 border-t border-slate-100 dark:border-slate-800 pt-3 bg-white dark:bg-slate-900">
-            <div class="relative mb-2">
-                <input type="text" id="search-input-mobile" onkeyup="handleSearchMobile()" placeholder="Cari produk..." 
-                    class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl py-2.5 pl-10 pr-4 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-800 dark:text-white">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
-            </div>
-            <div class="flex justify-around text-xs font-bold text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-slate-800">
-                <a href="#catalog" class="hover:text-brand-500">Katalog</a>
-                <a href="#about" class="hover:text-brand-500">Tentang Kami</a>
-                <a href="#reviews" class="hover:text-brand-500">Ulasan</a>
-                <a href="#faq" class="hover:text-brand-500">FAQ</a>
             </div>
         </div>
     </header>
 
+    <!-- MAIN CONTENT CONTAINER -->
     <main class="flex-grow">
-        <!-- HERO BANNER SECTION -->
-        <section class="scroll-reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8">
-            <div class="relative rounded-3xl overflow-hidden bg-slate-900 shadow-2xl min-h-[380px] md:min-h-[440px] flex items-center">
-                <!-- Background Image & Overlay -->
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay">
-                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-transparent"></div>
-                
-                <!-- Glowing Decorative Elements -->
-                <div class="absolute -top-24 -left-24 w-72 h-72 bg-brand-600/30 rounded-full blur-3xl"></div>
-                <div class="absolute -bottom-24 -right-24 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl"></div>
 
-                <!-- Hero Content -->
-                <div class="relative z-10 p-6 sm:p-12 lg:p-16 max-w-2xl text-white">
-                    <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-semibold text-brand-200 mb-4">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>Produk Pilihan & Kuliner Lokal</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4">
-                        Kualitas Terbaik <span class="gradient-text">Sentuhan Otentik</span>
+        <!-- VIEW 1: PRODUCT CATALOG GRID VIEW -->
+        <section id="catalog-view" class="fade-in-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Hero Banner -->
+            <div class="relative rounded-3xl overflow-hidden bg-slate-900 shadow-xl mb-10 min-h-[220px] sm:min-h-[260px] flex items-center p-6 sm:p-10">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80" alt="Banner" class="absolute inset-0 w-full h-full object-cover opacity-30">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+                
+                <div class="relative z-10 max-w-xl text-white">
+                    <span class="inline-block bg-brand-500/30 border border-brand-400/40 text-brand-200 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                        OFFICIAL STORE & READY STOCK WAREHOUSE
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                        Koleksi Produk Pilihan Langsung Dari Gudang Utama
                     </h1>
-                    <p class="text-slate-300 text-xs sm:text-sm font-normal leading-relaxed mb-6">
-                        Dari kuliner UMKM olahan sambal cumi gurih hingga aksesoris & gadget modern. Semua disajikan dengan standar kebersihan tinggi dan pengiriman instan.
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 font-normal">
+                        Klik pada <strong>Kartu Produk (Product Card)</strong> di bawah ini untuk membuka <strong>Halaman Detail Produk Interaktif</strong> lengkap dengan galeri foto slideable.
                     </p>
-                    <div class="flex flex-wrap items-center gap-3">
-                        <a href="#catalog" class="px-6 py-3.5 gradient-btn text-white rounded-2xl font-bold text-xs shadow-glow hover:scale-105 transition-all flex items-center space-x-2">
-                            <span>Jelajahi Katalog</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
-                        <a href="#about" class="px-5 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-2xl font-bold text-xs backdrop-blur-md transition-all">
-                            Cerita Kami
-                        </a>
-                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- CATALOG SECTION HEADER & FILTERS -->
-        <section id="catalog" class="scroll-reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
                 <div>
-                    <div class="flex items-center space-x-2 text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider mb-1">
-                        <i class="fa-solid fa-fire text-amber-500"></i>
-                        <span>Produk Pilihan Hari Ini</span>
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Katalog Produk LUMINA</h2>
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider block mb-1">
+                        <i class="fa-solid fa-store mr-1"></i> Katalog Produk
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Daftar Barang Ready Stock</h2>
                 </div>
 
                 <!-- Category Pills -->
-                <div class="flex items-center space-x-2 overflow-x-auto hide-scrollbar pb-2 md:pb-0">
-                    <button onclick="filterCategory('all')" id="cat-all" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-brand-600 text-white shadow-md transition-all">
-                        Semua Produk
+                <div class="flex items-center space-x-2 overflow-x-auto hide-scrollbar pb-1">
+                    <button onclick="filterCategory('all')" id="cat-all" class="cat-pill active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-brand-600 text-white shadow-md">
+                        Semua Kategori
                     </button>
-                    <button onclick="filterCategory('food')" id="cat-food" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all">
-                        <i class="fa-solid fa-pepper-hot mr-1.5 text-rose-500"></i>Sambal UMKM
+                    <button onclick="filterCategory('food')" id="cat-food" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
+                        <i class="fa-solid fa-pepper-hot mr-1.5 text-rose-500"></i>Kuliner UMKM
                     </button>
-                    <button onclick="filterCategory('audio')" id="cat-audio" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all">
+                    <button onclick="filterCategory('audio')" id="cat-audio" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
                         <i class="fa-solid fa-headphones mr-1.5 text-slate-400"></i>Audio & Sound
                     </button>
-                    <button onclick="filterCategory('wearables')" id="cat-wearables" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all">
+                    <button onclick="filterCategory('wearables')" id="cat-wearables" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
                         <i class="fa-solid fa-clock mr-1.5 text-slate-400"></i>Wearables
                     </button>
-                    <button onclick="filterCategory('accessories')" id="cat-accessories" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all">
-                        <i class="fa-solid fa-shield-halved mr-1.5 text-slate-400"></i>Aksesoris
+                    <button onclick="filterCategory('accessories')" id="cat-accessories" class="cat-pill px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700">
+                        <i class="fa-solid fa-shield-halved mr-1.5 text-slate-400"></i>Aksesoris Tech
                     </button>
                 </div>
             </div>
 
-            <!-- Sort Bar -->
+            <!-- Sort Control -->
             <div class="flex items-center justify-between border-t border-b border-slate-200/80 dark:border-slate-800 py-3 mb-8 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                <span id="product-count-text">Menampilkan 8 produk</span>
+                <span id="product-count-text">Menampilkan produk</span>
                 <div class="flex items-center space-x-2">
                     <label for="sort-select" class="hidden sm:inline">Urutkan:</label>
                     <select id="sort-select" onchange="handleSortChange(this.value)" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 font-semibold text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500">
                         <option value="featured">Paling Populer</option>
                         <option value="price-low">Harga: Rendah ke Tinggi</option>
                         <option value="price-high">Harga: Tinggi ke Rendah</option>
+                        <option value="stock">Stok Warehouse Terbanyak</option>
                         <option value="rating">Rating Tertinggi</option>
                     </select>
                 </div>
             </div>
 
-            <!-- PRODUCT GRID -->
             <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Products injected via JS -->
+                <!-- Injected via JavaScript -->
             </div>
 
-            <!-- Empty State Container -->
             <div id="empty-state" class="hidden py-16 text-center">
-                <div class="w-20 h-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto text-slate-400 text-3xl mb-4">
+                <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto text-slate-400 text-2xl mb-3">
                     <i class="fa-solid fa-box-open"></i>
                 </div>
-                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">Produk tidak ditemukan</h3>
-                <p class="text-slate-500 text-xs mb-4">Coba cari kata kunci lain atau pilih kategori yang berbeda.</p>
-                <button onclick="resetFilters()" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition-all">
+                <h3 class="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">Produk tidak ditemukan</h3>
+                <p class="text-slate-500 text-xs mb-4">Coba gunakan kata kunci lain atau reset filter.</p>
+                <button onclick="resetFilters()" class="px-4 py-2 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700">
                     Reset Filter
                 </button>
             </div>
         </section>
 
-        <!-- ABOUT US SECTION -->
-        <section id="about" class="scroll-reveal py-16 bg-white dark:bg-slate-900/50 border-t border-b border-slate-200/80 dark:border-slate-800 my-12 transition-colors">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-xs font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-widest bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full border border-brand-200 dark:border-brand-800">
-                        TENTANG KAMI
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight mt-3 mb-4">
-                        Cerita Perjalanan LUMINA
-                    </h2>
-                    
-                    <!-- Tagline Block -->
-                    <div class="bg-gradient-to-r from-brand-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800/80 p-6 rounded-2xl border border-brand-100 dark:border-slate-700 my-6">
-                        <blockquote class="text-lg sm:text-xl font-extrabold text-brand-700 dark:text-brand-300 italic">
-                            "Menyajikan Kuliner Otentik & Inovasi Produk Berkualitas Tinggi Langsung ke Rumah Anda."
-                        </blockquote>
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <!-- VIEW 2: PRODUCT DETAIL PAGE VIEW -->
+        <section id="detail-view" class="hidden fade-in-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Breadcrumbs Navigation -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <button onclick="navigateToCatalog()" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 transition-colors shadow-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kembali ke Katalog</span>
+                </button>
+
+                <nav class="flex items-center space-x-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <a href="javascript:void(0)" onclick="navigateToCatalog()" class="hover:text-brand-600 dark:hover:text-brand-400">Katalog</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 dark:text-slate-700"></i>
+                    <span id="detail-breadcrumb-category" class="capitalize font-bold text-slate-700 dark:text-slate-300">Kategori</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 dark:text-slate-700"></i>
+                    <span id="detail-breadcrumb-title" class="truncate max-w-[150px] sm:max-w-[250px] font-bold text-brand-600 dark:text-brand-400">Nama Produk</span>
+                </nav>
+            </div>
+
+            <!-- PRODUCT DETAIL MAIN CONTAINER -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
+                
+                <!-- LEFT COLUMN: SLIDEABLE PHOTO GALLERY CAROUSEL (5 COLS) -->
+                <div class="lg:col-span-5 space-y-4">
                     
-                    <!-- Our Journey Text -->
-                    <div class="space-y-4 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                        <h3 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-                            <i class="fa-solid fa-compass text-brand-600"></i>
-                            Perjalanan Kami (Our Journey)
-                        </h3>
-                        <p class="text-xs sm:text-sm">
-                            Berawal dari sebuah dapur produksi UMKM lokal di tahun 2021, kami menyadari betapa sulitnya menemukan racikan kuliner tradisional seperti <strong>Sambal Cumi Asli</strong> yang jujur dalam rasa, menggunakan bahan-bahan segar, tanpa pengawet buatan, serta memiliki standar pengemasan yang benar-benar rapi dan aman.
-                        </p>
-                        <p class="text-xs sm:text-sm">
-                            Berbekal komitmen terhadap kualitas dan kepercayaan pelanggan, apa yang dulunya merupakan usaha dapur rumahan kini telah berkembang pesat. Setiap botol sambal dan setiap produk yang kami kirimkan telah melewati pengujian ketat untuk memastikan standar higienis dan cita rasa istimewa tetap terjaga hingga sampai ke tangan Anda.
-                        </p>
+                    <!-- Main Gallery Slideable Carousel Container -->
+                    <div class="relative bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl overflow-hidden shadow-lg aspect-square group select-none" id="carousel-viewport">
                         
-                        <div class="pt-2 flex items-center space-x-4">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">100% Produk Halal & Higienis</span>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <span class="w-3 h-3 rounded-full bg-brand-500"></span>
-                                <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Pengiriman Double Protection</span>
-                            </div>
+                        <!-- Track for Sliding -->
+                        <div id="carousel-track" class="carousel-track w-full h-full">
+                            <!-- Injected dynamically based on selected product gallery -->
+                        </div>
+
+                        <!-- Left Slide Arrow -->
+                        <button onclick="prevGallerySlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 text-white backdrop-blur-md hover:bg-brand-600 flex items-center justify-center text-sm opacity-80 group-hover:opacity-100 transition-all shadow-md z-20" title="Foto Sebelumnya">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <!-- Right Slide Arrow -->
+                        <button onclick="nextGallerySlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 text-white backdrop-blur-md hover:bg-brand-600 flex items-center justify-center text-sm opacity-80 group-hover:opacity-100 transition-all shadow-md z-20" title="Foto Selanjutnya">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                        <!-- Lightbox Zoom Trigger Button -->
+                        <button onclick="openImageLightbox()" class="absolute top-4 right-4 w-9 h-9 rounded-2xl bg-slate-900/70 text-white backdrop-blur-md hover:bg-brand-600 flex items-center justify-center text-xs shadow-md transition-colors z-20" title="Lihat Layar Penuh">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+
+                        <!-- Carousel Pagination Dots -->
+                        <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 z-20 bg-slate-900/50 backdrop-blur-md px-3 py-1.5 rounded-full">
+                            <!-- Dynamic Dots -->
+                        </div>
+
+                        <!-- Product Tags Badges -->
+                        <div class="absolute top-4 left-4 flex flex-col gap-1.5 z-20" id="detail-badge-container">
+                            <!-- Dynamic Badges -->
                         </div>
                     </div>
 
-                    <!-- Quick Mission Cards -->
-                    <div class="bg-slate-50 dark:bg-slate-800/60 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-700/60 space-y-4 shadow-sm">
-                        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-rose-500"></i>
-                            Misi Utama Kami
-                        </h3>
+                    <!-- Gallery Thumbnails Bar -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider block">Galeri Foto Slideable:</span>
+                            <span id="gallery-counter" class="text-[11px] font-bold text-brand-600 dark:text-brand-400">1 / 4</span>
+                        </div>
+                        <div id="gallery-thumbnails" class="grid grid-cols-4 gap-3">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
 
-                        <div class="space-y-3">
-                            <div class="flex items-start space-x-3 bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700">
-                                <div class="w-8 h-8 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                                    <i class="fa-solid fa-pepper-hot"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white">Bahan Baku Segar & Melimpah</h4>
-                                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Hanya menggunakan cumi segar pilihan dan cabai asli tanpa campuran pewarna atau bahan pengawet.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3 bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700">
-                                <div class="w-8 h-8 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                                    <i class="fa-solid fa-box-check"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white">Pengemasan Anti-Bocor</h4>
-                                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Segel aluminum foil ganda dan ekstra kardus tebal menjamin paket aman sampai luar pulau.</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start space-x-3 bg-white dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700">
-                                <div class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                                    <i class="fa-solid fa-hand-holding-heart"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-xs font-bold text-slate-900 dark:text-white">Pemberdayaan UMKM Lokal</h4>
-                                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Merangkul peternak dan nelayan lokal dalam rantai pasok pasokan bahan baku kami.</p>
-                                </div>
+                    <!-- Quick Guarantee Badges -->
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <div class="bg-slate-100/70 dark:bg-slate-900/60 p-3.5 rounded-2xl border border-slate-200/60 dark:border-slate-800 flex items-center space-x-3">
+                            <i class="fa-solid fa-truck-fast text-brand-600 text-lg flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Pengiriman Kilat</h4>
+                                <p class="text-[10px] text-slate-500">Dikirim Langsung dari Gudang</p>
                             </div>
                         </div>
+                        <div class="bg-slate-100/70 dark:bg-slate-900/60 p-3.5 rounded-2xl border border-slate-200/60 dark:border-slate-800 flex items-center space-x-3">
+                            <i class="fa-solid fa-shield-check text-emerald-500 text-lg flex-shrink-0"></i>
+                            <div>
+                                <h4 class="text-xs font-bold text-slate-900 dark:text-white">100% Produk Original</h4>
+                                <p class="text-[10px] text-slate-500">Garansi Toko Terjamin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: PRODUCT INFO & ACTION PANEL (7 COLS) -->
+                <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    
+                    <div class="space-y-4">
+                        <!-- Category Tag & Ratings -->
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span id="detail-category-badge" class="bg-brand-50 dark:bg-brand-950/80 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                                KATEGORI
+                            </span>
+                            <div class="flex items-center space-x-2 text-xs font-bold text-slate-600 dark:text-slate-300">
+                                <div class="flex text-amber-400">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span id="detail-rating-text" class="text-slate-900 dark:text-white">4.9</span>
+                                <span class="text-slate-400 font-normal">(<span id="detail-reviews-count">342</span> Ulasan Pembeli)</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Title -->
+                        <h1 id="detail-product-title" class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-snug">
+                            Nama Produk
+                        </h1>
+
+                        <!-- Price Banner Box -->
+                        <div class="bg-slate-100/80 dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center justify-between flex-wrap gap-3">
+                            <div>
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Harga Spesial Promo</div>
+                                <div class="flex items-baseline space-x-3">
+                                    <span id="detail-price-text" class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">Rp 0</span>
+                                    <span id="detail-orig-price-text" class="text-sm sm:text-base text-slate-400 line-through">Rp 0</span>
+                                </div>
+                            </div>
+                            <div id="detail-discount-badge" class="bg-rose-500 text-white font-extrabold text-xs px-3 py-1.5 rounded-xl shadow-sm">
+                                DISKON
+                            </div>
+                        </div>
+
+                        <!-- WAREHOUSE STOCK INDICATOR BOX -->
+                        <div class="bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 p-4 rounded-2xl space-y-2">
+                            <div class="flex items-center justify-between text-xs font-bold">
+                                <span class="flex items-center text-emerald-700 dark:text-emerald-400 gap-1.5">
+                                    <i class="fa-solid fa-warehouse"></i>
+                                    <span id="detail-warehouse-name">Gudang Utama - Jakarta Pusat</span>
+                                </span>
+                                <span id="detail-stock-count" class="text-emerald-800 dark:text-emerald-300 font-extrabold">Stok Tersedia: 24 unit</span>
+                            </div>
+                            
+                            <!-- Stock Progress Bar -->
+                            <div class="w-full bg-emerald-200 dark:bg-emerald-900/60 rounded-full h-2 overflow-hidden">
+                                <div id="detail-stock-bar" class="bg-emerald-500 h-2 rounded-full transition-all duration-500" style="width: 65%;"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400">
+                                <i class="fa-solid fa-clock text-amber-500 mr-1"></i>
+                                Pesan sebelum jam 15:00 WIB untuk dikirimkan di hari yang sama!
+                            </p>
+                        </div>
+
+                        <!-- Variant Selector -->
+                        <div id="variants-section" class="space-y-2 pt-2">
+                            <label id="variant-label" class="text-xs font-extrabold text-slate-800 dark:text-slate-200 block uppercase tracking-wider">
+                                Pilih Varian / Option:
+                            </label>
+                            <div id="variants-container" class="flex flex-wrap gap-2">
+                                <!-- Dynamic Variant Pills -->
+                            </div>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div class="space-y-2 pt-2">
+                            <label class="text-xs font-extrabold text-slate-800 dark:text-slate-200 block uppercase tracking-wider">
+                                Jumlah Pembelian:
+                            </label>
+                            <div class="flex items-center space-x-3">
+                                <div class="inline-flex items-center border border-slate-300 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-900 overflow-hidden shadow-sm">
+                                    <button onclick="adjustDetailQuantity(-1)" class="w-10 h-10 font-black text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:bg-slate-200 transition-colors flex items-center justify-center">
+                                        <i class="fa-solid fa-minus text-xs"></i>
+                                    </button>
+                                    <span id="detail-quantity-val" class="w-12 text-center font-bold text-sm text-slate-900 dark:text-white">1</span>
+                                    <button onclick="adjustDetailQuantity(1)" class="w-10 h-10 font-black text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:bg-slate-200 transition-colors flex items-center justify-center">
+                                        <i class="fa-solid fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                                <span class="text-xs text-slate-400 font-medium">Subtotal Estimasi: <strong id="detail-item-subtotal" class="text-slate-800 dark:text-white font-bold">Rp 0</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- ACTION BUTTONS: ADD TO CART & BUY NOW -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+                            <!-- Add to Cart Button -->
+                            <button onclick="handleDetailAddToCart()" class="w-full py-4 bg-white dark:bg-slate-900 hover:bg-brand-50 dark:hover:bg-slate-800 text-brand-600 dark:text-brand-400 border-2 border-brand-600 dark:border-brand-500 font-extrabold rounded-2xl text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-sm hover:shadow-md transition-all">
+                                <i class="fa-solid fa-cart-plus text-base"></i>
+                                <span>Tambah Ke Keranjang</span>
+                            </button>
+
+                            <!-- Buy Now Button -->
+                            <button onclick="handleDetailBuyNow()" class="w-full py-4 gradient-btn text-white font-extrabold rounded-2xl text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-glow hover:scale-[1.02] active:scale-95 transition-all">
+                                <i class="fa-solid fa-bolt text-base text-amber-300"></i>
+                                <span>Beli Sekarang (Instant)</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Wishlist Direct Trigger -->
+                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+                        <button onclick="handleDetailToggleWishlist()" id="detail-wishlist-btn" class="flex items-center space-x-2 text-slate-600 dark:text-slate-300 hover:text-rose-500 font-bold transition-colors">
+                            <i id="detail-wishlist-icon" class="fa-regular fa-heart text-base"></i>
+                            <span id="detail-wishlist-text">Tambah ke Wishlist Saya</span>
+                        </button>
+                        <span class="text-slate-400 text-[11px]"><i class="fa-solid fa-shield text-brand-500 mr-1"></i> Transaksi Terverifikasi Aman</span>
                     </div>
 
                 </div>
 
             </div>
-        </section>
 
-        <!-- CUSTOMER REVIEWS SECTION -->
-        <section id="reviews" class="scroll-reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
-                <div>
-                    <span class="text-xs font-extrabold text-amber-500 uppercase tracking-widest bg-amber-50 dark:bg-amber-950/60 px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800">
-                        TESTIMONI PEMBELI
-                    </span>
-                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight mt-3">
-                        Apa Kata Pelanggan Kami?
-                    </h2>
-                </div>
-                <div class="flex items-center space-x-2 bg-white dark:bg-slate-800 px-4 py-2 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <div class="text-amber-400 text-lg">★ ★ ★ ★ ★</div>
-                    <span class="text-xs font-bold text-slate-800 dark:text-white">4.9 / 5.0 (500+ Ulasan)</span>
-                </div>
-            </div>
-
-            <!-- Review Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- PRODUCT DESCRIPTION & SPECIFICATIONS TABS -->
+            <div class="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm mb-16">
                 
-                <!-- Review 1: 5 Stars -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="text-amber-400 text-sm">★★★★★</div>
-                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                <i class="fa-solid fa-circle-check text-xs"></i> Pembeli Terverifikasi
-                            </span>
+                <!-- Tab Headers -->
+                <div class="flex items-center space-x-3 border-b border-slate-200 dark:border-slate-800 pb-4 overflow-x-auto hide-scrollbar mb-6">
+                    <button onclick="switchTab('tab-desc')" id="btn-tab-desc" class="tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl bg-brand-600 text-white shadow-sm transition-all">
+                        Deskripsi Lengkap
+                    </button>
+                    <button onclick="switchTab('tab-specs')" id="btn-tab-specs" class="tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        Spesifikasi Produk
+                    </button>
+                    <button onclick="switchTab('tab-shipping')" id="btn-tab-shipping" class="tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        Pengiriman & Warehouse
+                    </button>
+                    <button onclick="switchTab('tab-reviews')" id="btn-tab-reviews" class="tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                        Ulasan Pembeli
+                    </button>
+                </div>
+
+                <!-- Tab 1: Full Description -->
+                <div id="tab-desc" class="tab-content space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p id="detail-full-description">
+                        Deskripsi produk...
+                    </p>
+                    <h3 class="text-sm font-black text-slate-900 dark:text-white pt-2">Keunggulan & Fitur Utama Produk:</h3>
+                    <ul id="detail-features-list" class="list-disc pl-5 space-y-1 text-xs">
+                        <!-- Dynamic features list -->
+                    </ul>
+                </div>
+
+                <!-- Tab 2: Specs -->
+                <div id="tab-specs" class="tab-content hidden space-y-4">
+                    <table class="w-full text-xs text-left text-slate-600 dark:text-slate-300 border-collapse">
+                        <tbody id="detail-specs-table" class="divide-y divide-slate-200 dark:divide-slate-800">
+                            <!-- Injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Tab 3: Shipping -->
+                <div id="tab-shipping" class="tab-content hidden space-y-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p>
+                        Semua barang disimpan di dalam fasilitas gudang terkontrol suhu & kebersihan untuk menjamin kualitas fisik sebelum pengiriman.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-extrabold text-slate-900 dark:text-white mb-1"><i class="fa-solid fa-box text-brand-500 mr-2"></i>Pengemasan Standar Warehouse</h4>
+                            <p class="text-[11px] text-slate-500">Menggunakan double seal aluminum foil, bubble wrap tebal, dan kardus tebal pelindung ekstra.</p>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                            "Gokil sih ini sambal cuminya! Pas paket dateng agak kaget karena pakingnya rapi banget, pake bubble wrap tebel plus kemasan botolnya di-seal rapat, ditaruh di dus jadi kagak ada bocor atau rembes oli sama sekali. Pas dibuka, potongan cuminya gak pelit alias melimpah banget, empuk lagi gak kenyal kek karet! Rasa pedes gurihnya dapet banget, cumi asinnya kerasa mantap dipake makan pake nasi hangat aja udah bikin nambah dua piring. Fix bakal langganan di sini!"
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-brand-500 to-indigo-600 text-white font-bold flex items-center justify-center text-xs">
-                            RS
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Rina S.</h4>
-                            <span class="text-[10px] text-slate-400">Membeli: Sambal Cumi Juara UMKM</span>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <h4 class="font-extrabold text-slate-900 dark:text-white mb-1"><i class="fa-solid fa-truck-ramp-box text-brand-500 mr-2"></i>Estimasi Sampai</h4>
+                            <p class="text-[11px] text-slate-500">Jabodetabek: 1-2 Hari Kerja. Luar Pulau Jawa: 2-4 Hari Kerja.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Review 2: 4 Stars -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="text-amber-400 text-sm">★★★★☆</div>
-                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                <i class="fa-solid fa-circle-check text-xs"></i> Pembeli Terverifikasi
-                            </span>
+                <!-- Tab 4: Reviews -->
+                <div id="tab-reviews" class="tab-content hidden space-y-4">
+                    <div class="flex items-center space-x-4 bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="text-center pr-4 border-r border-slate-200 dark:border-slate-700">
+                            <div class="text-3xl font-black text-slate-900 dark:text-white">4.9</div>
+                            <div class="flex text-amber-400 text-xs my-1">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="text-[10px] text-slate-400 font-bold">342 Review</div>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                            "Soal rasa sejujurnya enaaak bgt! Bumbunya meresap, pedasnya pas di lidah, cumi-cuminya juga lumayan banyak & gak bau amis. Cuma agak disayangkan aja di pengirimannya yang rada lama, butuh waktu sekitar 4 hari baru sampe rumah padahal masih satu provinsi. Moga-moga ke depannya opsi kurirnya bisa ditambah biar bisa sampe lebih cepat. Tapi overall buat kualitas produk & rasa sambalnya mah top markotop, worth it buat dicoba!"
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-orange-600 text-white font-bold flex items-center justify-center text-xs">
-                            BP
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Budi Prasetyo</h4>
-                            <span class="text-[10px] text-slate-400">Membeli: Sambal Cumi Juara UMKM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Review 3: 5 Stars -->
-                <div class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between">
-                            <div class="text-amber-400 text-sm">★★★★★</div>
-                            <span class="bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                                <i class="fa-solid fa-rotate text-xs"></i> Repeat Buyer
-                            </span>
-                        </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-                            "Ini udah pembelian ke-3 aku di toko ini dan kualitasnya tetep konsisten stabil bgt! Jujur udah sering nyobain sambal cumi kemasan merk-merk lain yang viral di medsos, tapi kebanyakan cuma menang di minyak doang atau cuminya seuprit. Kalo merk UMKM ini beda banget, rempah bumbunya kerasa medok, minyaknya pas, dan yang paling penting harga sebanding bgt sama isinya. Buat yang nyari sambal cumi langganan, gausah ragu deh bandingin sama merk lain, yang ini terjuara!"
-                        </p>
-                    </div>
-                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100 dark:border-slate-800 mt-4">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-rose-500 to-pink-600 text-white font-bold flex items-center justify-center text-xs">
-                            DL
-                        </div>
-                        <div>
-                            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Dinda Lestari</h4>
-                            <span class="text-[10px] text-slate-400">Membeli: Sambal Cumi Juara UMKM (3x Order)</span>
+                        <div class="text-xs text-slate-600 dark:text-slate-300">
+                            <p class="font-bold">98% Pembeli Sangat Puas!</p>
+                            <p class="text-[11px] text-slate-400">Pengiriman cepat, kemasan rapi, dan kualitas produk terjamin sesuai deskripsi.</p>
                         </div>
                     </div>
                 </div>
 
             </div>
+
+            <!-- RELATED PRODUCTS SECTION -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block">Rekomendasi Terbaik</span>
+                        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Produk Serupa dari Gudang</h2>
+                    </div>
+                </div>
+
+                <div id="related-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Related cards injected via JS -->
+                </div>
+            </div>
+
         </section>
 
-        <!-- FAQ SECTION -->
-        <section id="faq" class="scroll-reveal max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-xs font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-widest bg-brand-50 dark:bg-brand-950/60 px-3 py-1 rounded-full border border-brand-200 dark:border-brand-800">
-                    PERTANYAAN UMUM
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight mt-3 mb-3">
-                    Pertanyaan Sering Diajukan
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                    Temukan jawaban cepat seputar cara pemesanan, ketahanan produk kuliner UMKM, pengiriman, hingga garansi toko LUMINA.
-                </p>
-            </div>
-
-            <div class="space-y-4">
-                <!-- FAQ Item 1 -->
-                <div class="faq-item active bg-white dark:bg-slate-900 border border-brand-500/30 dark:border-brand-500/40 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">1</span>
-                            Bagaimana cara melakukan pemesanan di LUMINA Store?
-                        </span>
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
-                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
-                        </div>
-                    </button>
-                    <div class="faq-wrapper">
-                        <div class="overflow-hidden">
-                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
-                                Sangat mudah! Pilih produk yang Anda inginkan dari katalog, klik <strong>Beli</strong> untuk memasukkan ke keranjang belanja, lalu tekan tombol <strong>Checkout via WhatsApp</strong>. Detail rincian pesanan Anda akan terkirim otomatis ke WhatsApp Customer Care kami untuk konfirmasi alamat dan opsi pembayaran.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 2 -->
-                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">2</span>
-                            Berapa lama daya tahan Sambal Cumi & produk kuliner UMKM?
-                        </span>
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
-                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
-                        </div>
-                    </button>
-                    <div class="faq-wrapper">
-                        <div class="overflow-hidden">
-                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
-                                Produk sambal UMKM kami tahan hingga <strong>1 bulan pada suhu ruangan</strong> (dalam kondisi segel belum dibuka) dan bertahan hingga <strong>3 bulan jika disimpan dalam kulkas</strong>. Setelah segel alumunium dibuka, disarankan dikonsumsi dalam 7–10 hari dan selalu gunakan sendok bersih.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 3 -->
-                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">3</span>
-                            Apakah pengiriman aman untuk tujuan luar pulau / jarak jauh?
-                        </span>
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
-                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
-                        </div>
-                    </button>
-                    <div class="faq-wrapper">
-                        <div class="overflow-hidden">
-                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
-                                Sangat aman! Setiap kemasan botol disegel dengan <em>double aluminum foil seal</em> pres panas anti-bocor, kemudian dibungkus ekstra bubble wrap tebal dan dimasukkan ke dalam kardus pelindung khusus sehingga tahan guncangan ekspedisi ke seluruh Indonesia.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 4 -->
-                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">4</span>
-                            Metode pembayaran apa saja yang didukung?
-                        </span>
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
-                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
-                        </div>
-                    </button>
-                    <div class="faq-wrapper">
-                        <div class="overflow-hidden">
-                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
-                                Kami mendukung berbagai metode pembayaran fleksibel: Transfer Bank (BCA, Mandiri, BRI, BNI), QRIS All Payment (Gopay, OVO, DANA, ShopeePay, LinkAja, dan m-Banking), serta Virtual Account.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Item 5 -->
-                <div class="faq-item bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-brand-300 dark:hover:border-brand-700/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300">
-                    <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left focus:outline-none group">
-                        <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors pr-4 flex items-center gap-3">
-                            <span class="w-7 h-7 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xs font-black flex-shrink-0">5</span>
-                            Bagaimana jika paket diterima dalam kondisi rusak atau bocor?
-                        </span>
-                        <div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-brand-600 dark:group-hover:text-brand-400 flex-shrink-0 transition-colors">
-                            <i class="fa-solid fa-chevron-down faq-icon text-xs"></i>
-                        </div>
-                    </button>
-                    <div class="faq-wrapper">
-                        <div class="overflow-hidden">
-                            <p class="pt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800 mt-4">
-                                Kami memberikan <strong>Garansi Retur 100%</strong>. Apabila produk yang Anda terima pecah, retak, atau mengalami bocor selama perjalanan, cukup kirimkan foto/video unboxing ke Customer Care WhatsApp kami, dan kami akan langsung mengirimkan barang baru pengganti secara gratis.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- WHY CHOOSE US -->
-        <section class="scroll-reveal bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-950 py-12 border-t border-b border-slate-200/60 dark:border-slate-800 my-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="flex items-center space-x-4 bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm">
-                        <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-950/60 rounded-xl flex items-center justify-center text-brand-600 dark:text-brand-400 text-xl flex-shrink-0">
-                            <i class="fa-solid fa-truck-fast"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs">Pengiriman Cepat</h4>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Kirim ke seluruh Indonesia dengan garansi aman</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4 bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm">
-                        <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/60 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl flex-shrink-0">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs">Pesan via WA Direct</h4>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Konfirmasi dan pembayaran langsung via WhatsApp</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4 bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm">
-                        <div class="w-12 h-12 bg-amber-50 dark:bg-amber-950/60 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400 text-xl flex-shrink-0">
-                            <i class="fa-solid fa-shield-check"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs">100% Original & Segar</h4>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Jaminan mutu terbaik bagi setiap pelanggan</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4 bg-white dark:bg-slate-800/80 p-5 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 shadow-sm">
-                        <div class="w-12 h-12 bg-purple-50 dark:bg-purple-950/60 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 text-xl flex-shrink-0">
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 dark:text-white text-xs">Garansi Retur Produk</h4>
-                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Ganti baru jika produk rusak atau bocor</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <!-- PROMOTIONAL POPUP MODAL -->
-    <div id="promo-modal-backdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden relative animate-modal-pop">
-            
-            <button onclick="closePromoModal()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white flex items-center justify-center text-sm transition-all hover:rotate-90">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="relative bg-gradient-to-br from-brand-600 via-indigo-600 to-pink-600 p-8 text-white text-center overflow-hidden">
-                <div class="absolute -top-10 -right-10 w-36 h-36 bg-white/10 rounded-full blur-xl"></div>
-                <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-amber-400/20 rounded-full blur-xl"></div>
-
-                <span class="inline-block bg-amber-400 text-slate-950 font-black text-[11px] px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow-sm">
-                    ⚡ SPECIAL OFFER
-                </span>
-                <h3 class="text-2xl sm:text-3xl font-black tracking-tight leading-tight">
-                    🎉 SPECIAL OFFER!<br>10% OFF on your first order
-                </h3>
-            </div>
-
-            <div class="p-6 sm:p-8 space-y-5 text-center">
-                <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    Dapatkan potongan harga langsung 10% untuk transaksi pertama Anda di LUMINA Luxe Store. Gunakan voucher atau klaim sekarang!
-                </p>
-
-                <div class="bg-slate-50 dark:bg-slate-800/80 border-2 border-dashed border-brand-300 dark:border-brand-700/60 p-3.5 rounded-2xl flex items-center justify-between gap-2">
-                    <div class="text-left">
-                        <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Kode Kupon Anda:</span>
-                        <span id="promo-code-text" class="text-base font-black text-brand-600 dark:text-brand-400 font-mono tracking-widest">WELCOME10</span>
-                    </div>
-                    <button onclick="copyPromoCode()" id="copy-code-btn" class="px-3.5 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Salin</span>
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    <button onclick="claimPromoOffer()" class="w-full py-3.5 gradient-btn text-white font-extrabold rounded-2xl text-xs shadow-glow hover:scale-[1.02] transition-all flex items-center justify-center space-x-2">
-                        <i class="fa-solid fa-gift text-sm"></i>
-                        <span>Claim Now</span>
-                    </button>
-                    <button onclick="closePromoModal()" class="w-full py-3.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-extrabold rounded-2xl text-xs transition-colors">
-                        ✕ Close
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- CART DRAWER -->
+    <!-- CART DRAWER OVERLAY -->
     <div id="cart-drawer-backdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0"></div>
     <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white dark:bg-slate-900 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
         <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/50">
@@ -810,12 +572,12 @@
         </div>
 
         <div id="cart-items-container" class="flex-grow overflow-y-auto p-5 space-y-4 divide-y divide-slate-100 dark:divide-slate-800">
-            <!-- Dynamic Cart Items -->
+            <!-- Cart Items -->
         </div>
 
         <div class="p-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-800/50 space-y-3">
             <div class="flex gap-2">
-                <input type="text" id="promo-code-input" placeholder="Kode Diskon (LUMINA50 / WELCOME10)" class="flex-grow bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-3 py-2 text-xs uppercase tracking-wider font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
+                <input type="text" id="promo-code-input" placeholder="Kode Diskon (LUMINA10)" class="flex-grow bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-3 py-2 text-xs uppercase tracking-wider font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <button onclick="applyPromoCode()" class="px-4 py-2 bg-slate-800 dark:bg-slate-700 hover:bg-slate-900 text-white font-bold text-xs rounded-xl transition-all">Gunakan</button>
             </div>
             <div id="promo-msg" class="text-[11px] font-semibold hidden"></div>
@@ -830,7 +592,7 @@
                     <span id="cart-discount" class="font-bold text-emerald-600 dark:text-emerald-400">- Rp 0</span>
                 </div>
                 <div class="flex justify-between text-sm font-black text-slate-900 dark:text-white pt-2 border-t border-slate-200 dark:border-slate-700">
-                    <span>Total Est.</span>
+                    <span>Total Estimasi</span>
                     <span id="cart-total" class="text-brand-600 dark:text-brand-400 font-sans">Rp 0</span>
                 </div>
             </div>
@@ -840,14 +602,14 @@
                     <i class="fa-brands fa-whatsapp text-base"></i>
                     <span>Checkout via WhatsApp</span>
                 </button>
-                <button onclick="clearCart()" class="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold rounded-xl transition-colors">
+                <button onclick="clearCart()" class="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold rounded-xl transition-colors text-xs">
                     Kosongkan Keranjang
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- WISHLIST DRAWER -->
+    <!-- WISHLIST DRAWER OVERLAY -->
     <div id="wishlist-drawer-backdrop" onclick="toggleWishlistDrawer()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden transition-opacity duration-300 opacity-0"></div>
     <div id="wishlist-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white dark:bg-slate-900 z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col">
         <div class="p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/50">
@@ -861,111 +623,69 @@
         </div>
 
         <div id="wishlist-items-container" class="flex-grow overflow-y-auto p-5 space-y-4">
-            <!-- Dynamic Wishlist Items -->
+            <!-- Wishlist Items -->
         </div>
     </div>
 
-    <!-- QUICK VIEW / PRODUCT DETAIL MODAL -->
-    <div id="quickview-modal-backdrop" onclick="closeQuickView()" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        <div onclick="event.stopPropagation()" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden relative animate-in fade-in zoom-in duration-200 my-auto">
-            <button onclick="closeQuickView()" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-600 dark:text-slate-300 flex items-center justify-center text-base transition-colors">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div id="quickview-content" class="grid grid-cols-1 md:grid-cols-2 p-6 gap-6 max-h-[90vh] overflow-y-auto">
-                <!-- Injected via JavaScript -->
-            </div>
-        </div>
+    <!-- LIGHTBOX IMAGE MODAL -->
+    <div id="lightbox-modal" onclick="closeImageLightbox()" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <button onclick="closeImageLightbox()" class="absolute top-6 right-6 text-white text-2xl w-10 h-10 rounded-full bg-slate-800/80 flex items-center justify-center hover:bg-slate-700">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Full Screen Preview" class="max-w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl">
     </div>
 
     <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden items-center space-x-3 bg-slate-900 dark:bg-slate-800 text-white px-5 py-3 rounded-2xl shadow-2xl border border-slate-700/50 text-xs font-semibold transform transition-all">
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden items-center space-x-3 bg-slate-900 dark:bg-slate-800 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700/50 text-xs font-semibold transform transition-all">
         <span id="toast-icon" class="text-emerald-400 text-base"><i class="fa-solid fa-circle-check"></i></span>
-        <span id="toast-message">Produk telah ditambahkan ke keranjang!</span>
+        <span id="toast-message">Notifikasi</span>
     </div>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="https://wa.me/6285150945518?text=Halo%20LUMINA%20Store!%20Saya%20ingin%20bertanya%20tentang%20produk%20Anda." target="_blank" 
-       class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-glow-emerald hover:scale-110 transition-transform group"
-       title="Hubungi Customer Support WhatsApp">
-        <i class="fa-brands fa-whatsapp text-2xl group-hover:rotate-12 transition-transform"></i>
-        <span class="absolute right-16 bg-slate-900 text-white text-[11px] font-bold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity shadow-md pointer-events-none">
-            Chat WhatsApp
-        </span>
-    </a>
-
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 text-xs pt-14 pb-8 border-t border-slate-800">
+    <footer class="bg-slate-900 text-slate-400 text-xs pt-12 pb-8 border-t border-slate-800 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 pb-12 border-b border-slate-800">
-                
-                <!-- Brand Info -->
-                <div class="md:col-span-2 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+                <div class="space-y-3">
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 rounded-lg gradient-btn flex items-center justify-center text-white font-black text-base shadow-glow">L</div>
                         <span class="text-xl font-black text-white tracking-tight">LUMINA<span class="text-brand-500">.</span></span>
                     </div>
-                    <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
-                        LUMINA Luxe Store menyajikan pilihan kuliner UMKM otentik seperti Sambal Cumi Juara, hingga pilihan gadget dan aksesoris modern dengan pesanan instan via WhatsApp.
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Destinasi belanja produk unggulan kuliner UMKM lokal & aksesoris teknologi pilihan langsung dari gudang penyimpanan resmi.
                     </p>
-                    <div class="flex items-center space-x-3 text-sm text-slate-300">
-                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/6285150945518" target="_blank" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-sky-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                    </div>
                 </div>
-
-                <!-- Column 1 -->
-                <div class="space-y-3">
-                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Kategori</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#catalog" onclick="filterCategory('food')" class="hover:text-white transition-colors">Sambal Cumi UMKM</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('audio')" class="hover:text-white transition-colors">Audio & Headphones</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('wearables')" class="hover:text-white transition-colors">Wearables</a></li>
-                        <li><a href="#catalog" onclick="filterCategory('accessories')" class="hover:text-white transition-colors">Aksesoris Tech</a></li>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Kategori Utama</h4>
+                    <ul class="space-y-1.5 text-slate-400">
+                        <li><a href="javascript:void(0)" onclick="navigateToCatalog(); filterCategory('food')" class="hover:text-white">Sambal & Kuliner UMKM</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCatalog(); filterCategory('audio')" class="hover:text-white">Audio & Headphone</a></li>
+                        <li><a href="javascript:void(0)" onclick="navigateToCatalog(); filterCategory('wearables')" class="hover:text-white">Wearables Smartwatch</a></li>
                     </ul>
                 </div>
-
-                <!-- Column 2 -->
-                <div class="space-y-3">
-                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Bantuan & Informasi</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="hover:text-white transition-colors">Tentang Kami</a></li>
-                        <li><a href="#reviews" class="hover:text-white transition-colors">Ulasan Pelanggan</a></li>
-                        <li><a href="#faq" class="hover:text-white transition-colors">FAQ & Bantuan</a></li>
-                        <li><a href="javascript:void(0)" onclick="openPromoModal()" class="hover:text-white transition-colors">Voucher & Promo</a></li>
-                        <li><a href="https://wa.me/6285150945518" target="_blank" class="hover:text-white transition-colors">Pusat Bantuan WA</a></li>
-                    </ul>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Gudang & Logistik</h4>
+                    <p class="text-slate-400">Gudang Pusat: Jakarta Pusat (Rack A-14)</p>
+                    <p class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Jam Operasional: 08:00 - 20:00 WIB</p>
                 </div>
-
-                <!-- Column 3 -->
-                <div class="space-y-3">
-                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Jam Operasional</h4>
-                    <div class="space-y-1.5 text-[11px]">
-                        <p><strong class="text-slate-200">Senin - Sabtu:</strong><br>08:00 - 20:00 WIB</p>
-                        <p><strong class="text-slate-200">Minggu:</strong><br>09:00 - 17:00 WIB</p>
-                        <p class="text-emerald-400 font-semibold pt-1"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Buka Hari Ini</p>
-                    </div>
+                <div class="space-y-2">
+                    <h4 class="font-bold text-white uppercase text-[11px] tracking-wider">Bantuan Pelanggan</h4>
+                    <a href="https://wa.me/6285150945518" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 rounded-xl font-bold hover:bg-emerald-600 hover:text-white transition-colors">
+                        <i class="fa-brands fa-whatsapp"></i> Customer Support WA
+                    </a>
                 </div>
-
             </div>
-
-            <!-- Bottom Copyright -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-                <p>&copy; 2026 LUMINA Store. All rights reserved. Dibuat dengan dedikasi untuk kuliner & produk lokal.</p>
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+                <p>&copy; 2026 LUMINA Store. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="hover:text-slate-300">Kebijakan Privasi</a>
                     <a href="#" class="hover:text-slate-300">Syarat & Ketentuan</a>
-                    <a href="#" class="hover:text-slate-300">Garansi Pengiriman</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
-        /* ------------------------------------------------------------------ */
-        /* PRODUCTS DATABASE DATA ARRAY                                       */
-        /* ------------------------------------------------------------------ */
         const productsData = [
             {
                 id: 1,
@@ -975,10 +695,32 @@
                 originalPrice: 48000,
                 rating: 4.9,
                 reviewsCount: 342,
-                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=600&q=80",
-                description: "Sambal Cumi khas rumahan racikan UMKM lokal. Menggunakan cumi asin premium yang empuk melimpah, cabai segar pilihan, tanpa pengawet sintesis, dan dikemas dengan double seal aluminum foil anti-bocor.",
+                stock: 24,
+                maxStock: 50,
+                warehouse: "Gudang Utama - Jakarta Pusat (Rack B-14)",
+                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Pedas Sedang", "Super Pedas", "Extra Cumi (+Rp 5k)"],
                 tags: ["BEST SELLER", "UMKM LOKAL"],
-                isBestSeller: true
+                isBestSeller: true,
+                description: "Sambal Cumi khas rumahan racikan UMKM lokal. Menggunakan cumi asin premium yang empuk melimpah, cabai segar pilihan, tanpa pengawet sintesis, dan dikemas dengan double seal aluminum foil anti-bocor.",
+                features: [
+                    "Potongan cumi asin segar melimpah dan tidak alot",
+                    "Segel aluminium foil ganda anti-bocor untuk pengiriman luar pulau",
+                    "Tahan 1 bulan pada suhu ruangan & 3 bulan di kulkas",
+                    "100% Bahan Alami Tanpa Pengawet Sintesis"
+                ],
+                specs: {
+                    "Berat Bersih": "200 Gram",
+                    "Komposisi": "Cumi Asin, Cabai Rawit, Bawang Merah, Bawang Putih, Minyak Nabati, Garam",
+                    "Masa Simpan": "1 Bulan Suhu Ruang / 3 Bulan Kulkas",
+                    "Sertifikasi": "Halal ID31110000213"
+                }
             },
             {
                 id: 2,
@@ -988,49 +730,128 @@
                 originalPrice: 750000,
                 rating: 4.8,
                 reviewsCount: 128,
-                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
-                description: "Headphone wireless kelas studio dengan fitur Active Noise Canceling (ANC), bass mendalam, mikrofon bening untuk panggilan, dan ketahanan baterai hingga 40 jam pemakaian.",
+                stock: 8,
+                maxStock: 30,
+                warehouse: "Gudang Aksesoris - Tangerang (Rack C-02)",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Midnight Black", "Silver White", "Space Gray"],
                 tags: ["AUDIO HD", "DISKON 33%"],
-                isBestSeller: false
+                isBestSeller: false,
+                description: "Headphone wireless kelas studio dengan fitur Active Noise Canceling (ANC), bass mendalam, mikrofon bening untuk panggilan, dan ketahanan baterai hingga 40 jam pemakaian.",
+                features: [
+                    "Active Noise Cancellation hingga 35dB",
+                    "Driver Titanium 40mm Suara Bass Studio",
+                    "Daya tahan Baterai hingga 40 Jam",
+                    "Koneksi Bluetooth 5.3 Latensi Rendah"
+                ],
+                specs: {
+                    "Ukuran Driver": "40mm Dynamic Driver",
+                    "Versi Bluetooth": "5.3 Wireless",
+                    "Kapasitas Baterai": "650 mAh",
+                    "Waktu Pengisian": "1.5 Jam Fast Charge"
+                }
             },
             {
                 id: 3,
-                name: "Smart Watch Ultra Fit Gen-2",
+                name: "Smart Watch Ultra Fit Gen-2 AMOLED",
                 category: "wearables",
                 price: 325000,
                 originalPrice: 450000,
                 rating: 4.7,
                 reviewsCount: 95,
-                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80",
-                description: "Jam tangan pintar dengan layar AMOLED 1.85 inci, pemantau detak jantung 24/7, monitor kadar oksigen darah (SpO2), waterproof IP68, serta 100+ mode olahraga.",
+                stock: 14,
+                maxStock: 25,
+                warehouse: "Gudang Gadget - Jakarta Selatan (Rack A-08)",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Black Sport", "Orange Trail", "Titanium Gray"],
                 tags: ["POPULER"],
-                isBestSeller: true
+                isBestSeller: true,
+                description: "Jam tangan pintar dengan layar AMOLED 1.85 inci, pemantau detak jantung 24/7, monitor kadar oksigen darah (SpO2), waterproof IP68, serta 100+ mode olahraga.",
+                features: [
+                    "Layar Always-On AMOLED HD 1.85 inci",
+                    "Ketahanan Air IP68 Siap Renang",
+                    "Sensor Kesehatan SpO2 & Heart Rate 24/7",
+                    "Dukungan Panggilan Telepon Bluetooth"
+                ],
+                specs: {
+                    "Layar": "1.85 Inch AMOLED Retina Display",
+                    "Proteksi": "IP68 Waterproof",
+                    "Daya Tahan Baterai": "7-10 Hari Pemakaian Normal",
+                    "Kompatibilitas": "Android 6.0+ & iOS 10.0+"
+                }
             },
             {
                 id: 4,
-                name: "Premium Leather Case & Sleeve",
+                name: "Premium Microfiber Leather Sleeve 14 Inch",
                 category: "accessories",
                 price: 145000,
                 originalPrice: 200000,
                 rating: 4.9,
                 reviewsCount: 64,
-                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
-                description: "Sleeve dompet berbahan kulit sintetis microfiber kualitas tinggi untuk laptop/tablet up to 14 inci. Melindungi dari goresan, tahan percikan air, dan tampak elegan.",
+                stock: 18,
+                maxStock: 40,
+                warehouse: "Gudang Utama - Jakarta Pusat (Rack D-01)",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Brown Saddle", "Charcoal Black", "Navy Blue"],
                 tags: ["HANDMADE"],
-                isBestSeller: false
+                isBestSeller: false,
+                description: "Sleeve dompet berbahan kulit sintetis microfiber kualitas tinggi untuk laptop/tablet up to 14 inci. Melindungi dari goresan, tahan percikan air, dan tampak elegan.",
+                features: [
+                    "Bahan Kulit Microfiber Premium Tahan Percikan Air",
+                    "Lapisan Beludru Halus di Bagian Dalam Anti-Gores",
+                    "Desain Ramping & Ringan Mudah Masuk Tas"
+                ],
+                specs: {
+                    "Ukuran": "34.5 x 24.5 cm (Up to 14 Inch Laptop)",
+                    "Material": "Microfiber Leather Synthetic",
+                    "Warna": "Brown / Black / Navy"
+                }
             },
             {
                 id: 5,
-                name: "Portable Bluetooth Bass Speaker",
+                name: "Portable Bluetooth Subwoofer Speaker IPX7",
                 category: "audio",
                 price: 289000,
                 originalPrice: 380000,
                 rating: 4.8,
                 reviewsCount: 110,
-                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80",
-                description: "Speaker portabel nirkabel dengan subwoofer ganda untuk bass menggelegar. Tahan air rating IPX7, cocok untuk outdoor, party, maupun pendamping ruang kerja.",
+                stock: 15,
+                maxStock: 35,
+                warehouse: "Gudang Aksesoris - Tangerang (Rack C-05)",
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Black Matte", "Army Green", "Electric Red"],
                 tags: ["EXTRA BASS"],
-                isBestSeller: false
+                isBestSeller: false,
+                description: "Speaker portabel nirkabel dengan subwoofer ganda untuk bass menggelegar. Tahan air rating IPX7, cocok untuk outdoor, party, maupun pendamping ruang kerja.",
+                features: [
+                    "Dual Bass Radiator 20W Peak Output",
+                    "Sertifikasi Anti Air IPX7 Tahan Tenggelam",
+                    "Baterai Tahan Hingga 15 Jam Playtime"
+                ],
+                specs: {
+                    "Output Power": "20W RMS",
+                    "Baterai": "3000 mAh",
+                    "Port": "Type-C Charging & AUX 3.5mm"
+                }
             },
             {
                 id: 6,
@@ -1040,107 +861,292 @@
                 originalPrice: 40000,
                 rating: 4.9,
                 reviewsCount: 215,
-                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=600&q=80",
+                stock: 5,
+                maxStock: 60,
+                warehouse: "Gudang Utama - Jakarta Pusat (Rack B-12)",
+                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80",
+                gallery: [
+                    "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80",
+                    "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
+                ],
+                variants: ["Pedas Sedang", "Pedas Gurih Extreme"],
+                tags: ["STOK TERBATAS"],
+                isBestSeller: true,
                 description: "Aroma bawang merah lokal yang digoreng garing berpadu dengan gurihnya cabai rawit pedas alami. Sangat cocok dijadikan lauk pendamping gorengan maupun nasi hangat.",
-                tags: ["PEDAS MANTAP"],
-                isBestSeller: true
-            },
-            {
-                id: 7,
-                name: "Ergonomic Silent Wireless Mouse",
-                category: "accessories",
-                price: 115000,
-                originalPrice: 160000,
-                rating: 4.6,
-                reviewsCount: 88,
-                image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
-                description: "Mouse nirkabel ergonimik dengan tombol silent-click tanpa suara. DPI yang dapat disesuaikan (800-1600 DPI) dan koneksi dual Bluetooth + 2.4G USB Dongle.",
-                tags: ["SILENT CLICK"],
-                isBestSeller: false
-            },
-            {
-                id: 8,
-                name: "Fast Charge Powerbank 20000mAh PD",
-                category: "accessories",
-                price: 210000,
-                originalPrice: 290000,
-                rating: 4.8,
-                reviewsCount: 176,
-                image: "https://images.unsplash.com/photo-1609592424109-dd9892f1b177?auto=format&fit=crop&w=600&q=80",
-                description: "Powerbank kapsitas jumbo 20.000 mAh dilengkapi teknologi Fast Charging Power Delivery 22.5W & Quick Charge 3.0. Bodi melengkung ramping mudah dibawa.",
-                tags: ["FAST CHARGE"],
-                isBestSeller: false
+                features: [
+                    "Melimpah potongan bawang merah asli pilihan",
+                    "Rasa gurih alami tanpa MSG berlebih",
+                    "Segel aluminium anti-bocor"
+                ],
+                specs: {
+                    "Berat": "200 Gram",
+                    "Komposisi": "Bawang Merah, Cabai Rawit Merah, Minyak Nabati, Garam",
+                    "Masa Simpan": "1 Bulan Suhu Ruang"
+                }
             }
         ];
 
-        /* ------------------------------------------------------------------ */
-        /* APPLICATION STATE VARIABLES                                        */
-        /* ------------------------------------------------------------------ */
         let cart = JSON.parse(localStorage.getItem('lumina_cart')) || [];
         let wishlist = JSON.parse(localStorage.getItem('lumina_wishlist')) || [];
         let currentCategory = 'all';
         let currentSort = 'featured';
         let searchQuery = '';
+        let selectedProduct = null;
+        let detailQuantity = 1;
+        let selectedVariant = '';
+        let currentSlideIndex = 0;
         let appliedPromo = null;
 
-        /* ------------------------------------------------------------------ */
-        /* DOM INITIALIZATION                                                 */
-        /* ------------------------------------------------------------------ */
+        // Touch Swipe Variables
+        let touchStartX = 0;
+        let touchEndX = 0;
+
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
-            renderProducts();
+            renderProductsGrid();
             updateCartUI();
             updateWishlistUI();
-            setupScrollReveal();
-
-            // Auto-trigger promo modal after 5 seconds if not closed prior
-            if (!sessionStorage.getItem('promo_closed')) {
-                setTimeout(() => {
-                    openPromoModal();
-                }, 4000);
-            }
+            setupCarouselTouchEvents();
         });
 
-        /* ------------------------------------------------------------------ */
-        /* DARK MODE LOGIC                                                    */
-        /* ------------------------------------------------------------------ */
-        function initTheme() {
-            const isDark = localStorage.getItem('lumina_theme') === 'dark' || 
-                (!('lumina_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-                updateThemeIcon(true);
+        function navigateToCatalog() {
+            document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('catalog-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openProductDetail(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            selectedProduct = product;
+            detailQuantity = 1;
+            currentSlideIndex = 0;
+            selectedVariant = product.variants ? product.variants[0] : '';
+
+            // Populate Breadcrumbs
+            document.getElementById('detail-breadcrumb-category').textContent = product.category;
+            document.getElementById('detail-breadcrumb-title').textContent = product.name;
+
+            // Populate Product Text Details
+            document.getElementById('detail-category-badge').textContent = product.category.toUpperCase();
+            document.getElementById('detail-rating-text').textContent = product.rating;
+            document.getElementById('detail-reviews-count').textContent = product.reviewsCount;
+            document.getElementById('detail-product-title').textContent = product.name;
+
+            // Pricing Display
+            document.getElementById('detail-price-text').textContent = formatRupiah(product.price);
+            const origEl = document.getElementById('detail-orig-price-text');
+            const discBadge = document.getElementById('detail-discount-badge');
+            
+            if (product.originalPrice) {
+                origEl.textContent = formatRupiah(product.originalPrice);
+                origEl.classList.remove('hidden');
+                const percent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+                discBadge.textContent = `HEMAT ${percent}%`;
+                discBadge.classList.remove('hidden');
             } else {
-                document.documentElement.classList.remove('dark');
-                updateThemeIcon(false);
+                origEl.classList.add('hidden');
+                discBadge.classList.add('hidden');
             }
-        }
 
-        function toggleDarkMode() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('lumina_theme', isDark ? 'dark' : 'light');
-            updateThemeIcon(isDark);
-            showToast(isDark ? 'Mode Gelap diaktifkan' : 'Mode Terang diaktifkan', 'fa-moon');
-        }
-
-        function updateThemeIcon(isDark) {
-            const icon = document.getElementById('theme-toggle-icon');
-            if (icon) {
-                icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-lg' : 'fa-solid fa-moon text-lg';
+            // Warehouse Stock Progress Bar
+            document.getElementById('detail-warehouse-name').textContent = product.warehouse;
+            document.getElementById('detail-stock-count').textContent = `Stok Tersedia: ${product.stock} unit`;
+            const stockPct = Math.min(100, Math.round((product.stock / product.maxStock) * 100));
+            const stockBar = document.getElementById('detail-stock-bar');
+            stockBar.style.width = `${stockPct}%`;
+            
+            if (product.stock <= 10) {
+                stockBar.className = "bg-rose-500 h-2 rounded-full transition-all duration-500";
+            } else {
+                stockBar.className = "bg-emerald-500 h-2 rounded-full transition-all duration-500";
             }
+
+            // Subtotal & Quantity Init
+            document.getElementById('detail-quantity-val').textContent = detailQuantity;
+            updateDetailSubtotal();
+
+            // Render Slideable Carousel Gallery
+            renderGalleryCarousel();
+
+            // Badges
+            const badgeContainer = document.getElementById('detail-badge-container');
+            badgeContainer.innerHTML = product.tags.map(t => `
+                <span class="bg-slate-900/80 backdrop-blur-md text-white font-extrabold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    ${t}
+                </span>
+            `).join('');
+
+            // Variants Selector
+            const variantSec = document.getElementById('variants-section');
+            const variantCont = document.getElementById('variants-container');
+            if (product.variants && product.variants.length > 0) {
+                variantSec.classList.remove('hidden');
+                variantCont.innerHTML = product.variants.map((v) => `
+                    <button onclick="selectVariant('${v}')" class="variant-pill px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${v === selectedVariant ? 'bg-brand-600 text-white border-brand-600 shadow-sm' : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-brand-400'}">
+                        ${v}
+                    </button>
+                `).join('');
+            } else {
+                variantSec.classList.add('hidden');
+            }
+
+            // Tabs Content
+            document.getElementById('detail-full-description').textContent = product.description;
+            
+            // Features
+            const featList = document.getElementById('detail-features-list');
+            featList.innerHTML = product.features.map(f => `<li>${f}</li>`).join('');
+
+            // Specs Table
+            const specTable = document.getElementById('detail-specs-table');
+            specTable.innerHTML = Object.entries(product.specs).map(([key, val]) => `
+                <tr>
+                    <td class="py-2.5 font-bold text-slate-800 dark:text-slate-200 w-1/3">${key}</td>
+                    <td class="py-2.5 text-slate-600 dark:text-slate-400">${val}</td>
+                </tr>
+            `).join('');
+
+            updateDetailWishlistButton();
+            renderRelatedProducts(product.id, product.category);
+
+            // Switch view
+            document.getElementById('catalog-view').classList.add('hidden');
+            document.getElementById('detail-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         /* ------------------------------------------------------------------ */
-        /* PRODUCT CATALOG RENDERER & FILTERS                                 */
+        /* GALLERY SLIDEABLE CAROUSEL LOGIC                                   */
         /* ------------------------------------------------------------------ */
-        function renderProducts() {
+        function renderGalleryCarousel() {
+            if (!selectedProduct) return;
+
+            const gallery = selectedProduct.gallery && selectedProduct.gallery.length > 0 
+                ? selectedProduct.gallery 
+                : [selectedProduct.image];
+
+            const track = document.getElementById('carousel-track');
+            const dots = document.getElementById('carousel-dots');
+            const thumbs = document.getElementById('gallery-thumbnails');
+
+            // Render Track Images
+            track.innerHTML = gallery.map(imgSrc => `
+                <div class="w-full h-full flex-shrink-0 flex items-center justify-center bg-white dark:bg-slate-900">
+                    <img src="${imgSrc}" alt="${selectedProduct.name}" class="w-full h-full object-cover">
+                </div>
+            `).join('');
+
+            // Render Pagination Dots
+            dots.innerHTML = gallery.map((_, idx) => `
+                <button onclick="goToGallerySlide(${idx})" class="w-2 h-2 rounded-full transition-all ${idx === currentSlideIndex ? 'w-5 bg-brand-500' : 'bg-white/60 hover:bg-white'}"></button>
+            `).join('');
+
+            // Render Thumbnails
+            thumbs.innerHTML = gallery.map((imgSrc, idx) => `
+                <button onclick="goToGallerySlide(${idx})" class="aspect-square rounded-2xl overflow-hidden border-2 transition-all ${idx === currentSlideIndex ? 'border-brand-600 scale-95 shadow-md' : 'border-slate-200 dark:border-slate-800 opacity-60 hover:opacity-100'}">
+                    <img src="${imgSrc}" alt="Thumb ${idx}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+
+            updateCarouselPosition();
+        }
+
+        function updateCarouselPosition() {
+            if (!selectedProduct) return;
+            const gallery = selectedProduct.gallery || [selectedProduct.image];
+            const track = document.getElementById('carousel-track');
+            
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+            // Update Counter Text
+            document.getElementById('gallery-counter').textContent = `${currentSlideIndex + 1} / ${gallery.length}`;
+
+            // Update Dots
+            const dots = document.querySelectorAll('#carousel-dots button');
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlideIndex) {
+                    dot.className = "w-5 h-2 rounded-full bg-brand-500 transition-all";
+                } else {
+                    dot.className = "w-2 h-2 rounded-full bg-white/60 hover:bg-white transition-all";
+                }
+            });
+
+            // Update Thumbnails Border
+            const thumbs = document.querySelectorAll('#gallery-thumbnails button');
+            thumbs.forEach((thumb, idx) => {
+                if (idx === currentSlideIndex) {
+                    thumb.className = "aspect-square rounded-2xl overflow-hidden border-2 border-brand-600 scale-95 shadow-md transition-all";
+                } else {
+                    thumb.className = "aspect-square rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 opacity-60 hover:opacity-100 transition-all";
+                }
+            });
+        }
+
+        function nextGallerySlide() {
+            if (!selectedProduct) return;
+            const gallery = selectedProduct.gallery || [selectedProduct.image];
+            currentSlideIndex = (currentSlideIndex + 1) % gallery.length;
+            updateCarouselPosition();
+        }
+
+        function prevGallerySlide() {
+            if (!selectedProduct) return;
+            const gallery = selectedProduct.gallery || [selectedProduct.image];
+            currentSlideIndex = (currentSlideIndex - 1 + gallery.length) % gallery.length;
+            updateCarouselPosition();
+        }
+
+        function goToGallerySlide(index) {
+            currentSlideIndex = index;
+            updateCarouselPosition();
+        }
+
+        function setupCarouselTouchEvents() {
+            const viewport = document.getElementById('carousel-viewport');
+            if (!viewport) return;
+
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleCarouselSwipe();
+            }, { passive: true });
+        }
+
+        function handleCarouselSwipe() {
+            const swipeThreshold = 40;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                nextGallerySlide();
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                prevGallerySlide();
+            }
+        }
+
+        function openImageLightbox() {
+            if (!selectedProduct) return;
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const gallery = selectedProduct.gallery || [selectedProduct.image];
+            img.src = gallery[currentSlideIndex] || selectedProduct.image;
+            modal.classList.remove('hidden');
+        }
+
+        function closeImageLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        function renderProductsGrid() {
             const container = document.getElementById('product-grid');
             const emptyState = document.getElementById('empty-state');
             const countText = document.getElementById('product-count-text');
 
             if (!container) return;
 
-            // Filter logic
             let filtered = productsData.filter(item => {
                 const matchesCat = (currentCategory === 'all' || item.category === currentCategory);
                 const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -1148,21 +1154,19 @@
                 return matchesCat && matchesSearch;
             });
 
-            // Sort logic
             if (currentSort === 'price-low') {
                 filtered.sort((a, b) => a.price - b.price);
             } else if (currentSort === 'price-high') {
                 filtered.sort((a, b) => b.price - a.price);
+            } else if (currentSort === 'stock') {
+                filtered.sort((a, b) => b.stock - a.stock);
             } else if (currentSort === 'rating') {
                 filtered.sort((a, b) => b.rating - a.rating);
             } else {
-                // Default: featured / best seller first
                 filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
             }
 
-            if (countText) {
-                countText.textContent = `Menampilkan ${filtered.length} produk`;
-            }
+            if (countText) countText.textContent = `Menampilkan ${filtered.length} produk`;
 
             if (filtered.length === 0) {
                 container.innerHTML = '';
@@ -1174,71 +1178,175 @@
 
             container.innerHTML = filtered.map(product => {
                 const isWishlisted = wishlist.includes(product.id);
-                const formattedPrice = formatRupiah(product.price);
-                const formattedOrig = product.originalPrice ? formatRupiah(product.originalPrice) : null;
-
-                return `
-                    <div class="product-card bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl overflow-hidden flex flex-col justify-between relative group">
-                        
-                        <!-- Badges & Wishlist Button -->
-                        <div class="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
-                            <div class="flex flex-col gap-1 pointer-events-auto">
-                                ${product.tags.map(tag => `
-                                    <span class="bg-slate-900/80 backdrop-blur-md text-white font-extrabold text-[9px] px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                                        ${tag}
-                                    </span>
-                                `).join('')}
-                            </div>
-                            <button onclick="toggleWishlist(${product.id})" class="pointer-events-auto w-9 h-9 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md shadow-md text-slate-400 hover:text-rose-500 flex items-center justify-center transition-colors">
-                                <i class="${isWishlisted ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'} text-sm"></i>
-                            </button>
-                        </div>
-
-                        <!-- Product Image -->
-                        <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-square cursor-pointer" onclick="openQuickView(${product.id})">
-                            <img src="${product.image}" alt="${product.name}" class="product-card-img w-full h-full object-cover">
-                            
-                            <!-- Quick View Hover Overlay -->
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <span class="px-4 py-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
-                                    <i class="fa-solid fa-eye mr-1.5"></i> Lihat Detail
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Product Info -->
-                        <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
-                            <div>
-                                <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
-                                    <span class="uppercase font-bold text-[10px] tracking-wider text-brand-600 dark:text-brand-400">${product.category}</span>
-                                    <div class="flex items-center space-x-1 text-amber-400 font-bold">
-                                        <i class="fa-solid fa-star text-[10px]"></i>
-                                        <span>${product.rating}</span>
-                                        <span class="text-slate-400 font-normal">(${product.reviewsCount})</span>
-                                    </div>
-                                </div>
-                                <h3 onclick="openQuickView(${product.id})" class="font-bold text-slate-900 dark:text-white text-sm line-clamp-2 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors">
-                                    ${product.name}
-                                </h3>
-                            </div>
-
-                            <div class="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
-                                <div>
-                                    <div class="text-base font-black text-slate-900 dark:text-white">${formattedPrice}</div>
-                                    ${formattedOrig ? `<div class="text-[11px] text-slate-400 line-through">${formattedOrig}</div>` : ''}
-                                </div>
-                                <button onclick="addToCart(${product.id})" class="px-3.5 py-2.5 bg-brand-600 hover:bg-brand-700 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-md flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    <span>Beli</span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                `;
+                return createProductCardHTML(product, isWishlisted);
             }).join('');
         }
 
+        function createProductCardHTML(product, isWishlisted) {
+            const formattedPrice = formatRupiah(product.price);
+            const formattedOrig = product.originalPrice ? formatRupiah(product.originalPrice) : null;
+
+            return `
+                <div class="product-card bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl overflow-hidden flex flex-col justify-between relative group cursor-pointer" onclick="openProductDetail(${product.id})">
+                    
+                    <!-- Badges & Wishlist Trigger -->
+                    <div class="absolute top-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
+                        <div class="flex flex-col gap-1 pointer-events-auto">
+                            ${product.tags.map(tag => `
+                                <span class="bg-slate-900/80 backdrop-blur-md text-white font-extrabold text-[9px] px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                        <button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="pointer-events-auto w-9 h-9 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md shadow-md text-slate-400 hover:text-rose-500 flex items-center justify-center transition-colors">
+                            <i class="${isWishlisted ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'} text-sm"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card Image -->
+                    <div class="relative overflow-hidden bg-slate-100 dark:bg-slate-800 aspect-square">
+                        <img src="${product.image}" alt="${product.name}" class="product-card-img w-full h-full object-cover">
+                        
+                        <!-- Hover Overlay Quick Action -->
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="px-4 py-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white rounded-xl text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform flex items-center gap-1.5">
+                                <i class="fa-solid fa-eye text-brand-600"></i> Buka Detail Produk
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Card Information -->
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-slate-400 mb-1">
+                                <span class="uppercase font-extrabold text-[10px] tracking-wider text-brand-600 dark:text-brand-400">${product.category}</span>
+                                <div class="flex items-center space-x-1 text-amber-400 font-bold">
+                                    <i class="fa-solid fa-star text-[10px]"></i>
+                                    <span>${product.rating}</span>
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-2 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                                ${product.name}
+                            </h3>
+                        </div>
+
+                        <!-- Stock Indicator -->
+                        <div class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-lg border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-between">
+                            <span><i class="fa-solid fa-box mr-1"></i> Stok Warehouse</span>
+                            <span class="font-bold">${product.stock} unit</span>
+                        </div>
+
+                        <!-- Price & Action Button -->
+                        <div class="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                            <div>
+                                <div class="text-base font-black text-slate-900 dark:text-white">${formattedPrice}</div>
+                                ${formattedOrig ? `<div class="text-[11px] text-slate-400 line-through">${formattedOrig}</div>` : ''}
+                            </div>
+                            <button onclick="event.stopPropagation(); addToCart(${product.id}, 1)" class="px-3.5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold shadow-md flex items-center space-x-1">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>Beli</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+        }
+
+        function renderRelatedProducts(currentId, category) {
+            const container = document.getElementById('related-products-grid');
+            if (!container) return;
+
+            let related = productsData.filter(p => p.id !== currentId && p.category === category);
+            if (related.length < 4) {
+                const rest = productsData.filter(p => p.id !== currentId && p.category !== category);
+                related = related.concat(rest).slice(0, 4);
+            } else {
+                related = related.slice(0, 4);
+            }
+
+            container.innerHTML = related.map(p => {
+                const isWishlisted = wishlist.includes(p.id);
+                return createProductCardHTML(p, isWishlisted);
+            }).join('');
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* DETAIL PAGE VARIANTS & QUANTITY CONTROLS                           */
+        /* ------------------------------------------------------------------ */
+        function selectVariant(variant) {
+            selectedVariant = variant;
+            document.querySelectorAll('.variant-pill').forEach(btn => {
+                if (btn.textContent.trim() === variant) {
+                    btn.className = "variant-pill px-3.5 py-2 rounded-xl text-xs font-bold border transition-all bg-brand-600 text-white border-brand-600 shadow-sm";
+                } else {
+                    btn.className = "variant-pill px-3.5 py-2 rounded-xl text-xs font-bold border transition-all bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-brand-400";
+                }
+            });
+        }
+
+        function adjustDetailQuantity(delta) {
+            if (!selectedProduct) return;
+            const newQty = detailQuantity + delta;
+            if (newQty >= 1 && newQty <= selectedProduct.stock) {
+                detailQuantity = newQty;
+                document.getElementById('detail-quantity-val').textContent = detailQuantity;
+                updateDetailSubtotal();
+            } else if (newQty > selectedProduct.stock) {
+                showToast(`Stok maksimal tersisa ${selectedProduct.stock} unit`, 'fa-circle-exclamation');
+            }
+        }
+
+        function updateDetailSubtotal() {
+            if (!selectedProduct) return;
+            const subtotal = selectedProduct.price * detailQuantity;
+            document.getElementById('detail-item-subtotal').textContent = formatRupiah(subtotal);
+        }
+
+        function handleDetailAddToCart() {
+            if (!selectedProduct) return;
+            addToCart(selectedProduct.id, detailQuantity, selectedVariant);
+        }
+
+        function handleDetailBuyNow() {
+            if (!selectedProduct) return;
+            addToCart(selectedProduct.id, detailQuantity, selectedVariant);
+            toggleCartDrawer();
+        }
+
+        function handleDetailToggleWishlist() {
+            if (!selectedProduct) return;
+            toggleWishlist(selectedProduct.id);
+            updateDetailWishlistButton();
+        }
+
+        function updateDetailWishlistButton() {
+            if (!selectedProduct) return;
+            const isWish = wishlist.includes(selectedProduct.id);
+            const icon = document.getElementById('detail-wishlist-icon');
+            const text = document.getElementById('detail-wishlist-text');
+            if (isWish) {
+                icon.className = "fa-solid fa-heart text-rose-500 text-base";
+                text.textContent = "Tersimpan di Wishlist";
+            } else {
+                icon.className = "fa-regular fa-heart text-base";
+                text.textContent = "Tambah ke Wishlist Saya";
+            }
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+            });
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(`btn-${tabId}`).className = "tab-btn font-extrabold text-xs sm:text-sm px-4 py-2 rounded-xl bg-brand-600 text-white shadow-sm transition-all";
+        }
+
+        /* ------------------------------------------------------------------ */
+        /* FILTERS & SEARCH                                                   */
+        /* ------------------------------------------------------------------ */
         function filterCategory(cat) {
             currentCategory = cat;
             document.querySelectorAll('.cat-pill').forEach(btn => {
@@ -1250,7 +1358,7 @@
                 activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
                 activeBtn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
             }
-            renderProducts();
+            renderProductsGrid();
         }
 
         function handleSearch() {
@@ -1261,27 +1369,22 @@
                 if (searchQuery.length > 0) clearBtn.classList.remove('hidden');
                 else clearBtn.classList.add('hidden');
             }
-            renderProducts();
-        }
-
-        function handleSearchMobile() {
-            const input = document.getElementById('search-input-mobile');
-            searchQuery = input ? input.value : '';
-            renderProducts();
+            if (document.getElementById('catalog-view').classList.contains('hidden')) {
+                navigateToCatalog();
+            }
+            renderProductsGrid();
         }
 
         function clearSearch() {
             searchQuery = '';
-            const input1 = document.getElementById('search-input');
-            const input2 = document.getElementById('search-input-mobile');
-            if (input1) input1.value = '';
-            if (input2) input2.value = '';
+            const input = document.getElementById('search-input');
+            if (input) input.value = '';
             handleSearch();
         }
 
         function handleSortChange(val) {
             currentSort = val;
-            renderProducts();
+            renderProductsGrid();
         }
 
         function resetFilters() {
@@ -1292,32 +1395,26 @@
             filterCategory('all');
         }
 
-        function toggleMobileSearch() {
-            const bar = document.getElementById('mobile-search-bar');
-            if (bar) bar.classList.toggle('hidden');
-        }
-
-        /* ------------------------------------------------------------------ */
-        /* CART & WISHLIST LOGIC                                              */
-        /* ------------------------------------------------------------------ */
-        function addToCart(productId, qty = 1) {
+        function addToCart(productId, qty = 1, variant = '') {
             const product = productsData.find(p => p.id === productId);
             if (!product) return;
 
-            const existingIndex = cart.findIndex(item => item.id === productId);
+            const variantName = variant || (product.variants ? product.variants[0] : '');
+            const existingIndex = cart.findIndex(item => item.id === productId && item.selectedVariant === variantName);
+
             if (existingIndex > -1) {
                 cart[existingIndex].quantity += qty;
             } else {
-                cart.push({ ...product, quantity: qty });
+                cart.push({ ...product, quantity: qty, selectedVariant: variantName });
             }
 
             saveCart();
             updateCartUI();
-            showToast(`${product.name} telah masuk keranjang!`, 'fa-cart-shopping');
+            showToast(`${product.name} (${qty}x) ditambahkan ke keranjang!`, 'fa-cart-shopping');
         }
 
-        function updateCartQuantity(productId, delta) {
-            const index = cart.findIndex(item => item.id === productId);
+        function updateCartQuantity(productId, variant, delta) {
+            const index = cart.findIndex(item => item.id === productId && item.selectedVariant === variant);
             if (index > -1) {
                 cart[index].quantity += delta;
                 if (cart[index].quantity <= 0) {
@@ -1328,8 +1425,8 @@
             updateCartUI();
         }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
+        function removeFromCart(productId, variant) {
+            cart = cart.filter(item => !(item.id === productId && item.selectedVariant === variant));
             saveCart();
             updateCartUI();
         }
@@ -1369,7 +1466,7 @@
                 container.innerHTML = `
                     <div class="py-12 text-center text-slate-400">
                         <i class="fa-solid fa-bag-shopping text-4xl mb-3 text-slate-300 dark:text-slate-700"></i>
-                        <p class="text-xs font-semibold">Keranjang belanja Anda masih kosong</p>
+                        <p class="text-xs font-semibold">Keranjang belanja Anda kosong</p>
                     </div>
                 `;
             } else {
@@ -1378,27 +1475,26 @@
                         <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl border border-slate-200 dark:border-slate-800 flex-shrink-0">
                         <div class="flex-grow min-w-0">
                             <h4 class="text-xs font-bold text-slate-900 dark:text-white truncate">${item.name}</h4>
-                            <div class="text-xs font-black text-brand-600 dark:text-brand-400 mt-0.5">${formatRupiah(item.price)}</div>
+                            ${item.selectedVariant ? `<div class="text-[10px] text-brand-600 dark:text-brand-400 font-bold">Varian: ${item.selectedVariant}</div>` : ''}
+                            <div class="text-xs font-black text-slate-800 dark:text-slate-200 mt-0.5">${formatRupiah(item.price)}</div>
                             <div class="flex items-center space-x-2 mt-2">
-                                <button onclick="updateCartQuantity(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">-</button>
+                                <button onclick="updateCartQuantity(${item.id}, '${item.selectedVariant}', -1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">-</button>
                                 <span class="text-xs font-bold text-slate-800 dark:text-white px-1">${item.quantity}</span>
-                                <button onclick="updateCartQuantity(${item.id}, 1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">+</button>
+                                <button onclick="updateCartQuantity(${item.id}, '${item.selectedVariant}', 1)" class="w-6 h-6 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-bold flex items-center justify-center hover:bg-slate-200">+</button>
                             </div>
                         </div>
-                        <button onclick="removeFromCart(${item.id})" class="text-slate-400 hover:text-rose-500 text-xs p-1">
+                        <button onclick="removeFromCart(${item.id}, '${item.selectedVariant}')" class="text-slate-400 hover:text-rose-500 text-xs p-1">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
                 `).join('');
             }
 
-            // Calculations
+            // Subtotal Calculation
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             let discount = 0;
-            if (appliedPromo === 'WELCOME10') {
+            if (appliedPromo === 'LUMINA10') {
                 discount = Math.round(subtotal * 0.10);
-            } else if (appliedPromo === 'LUMINA50') {
-                discount = Math.min(50000, Math.round(subtotal * 0.50));
             }
 
             const total = Math.max(0, subtotal - discount);
@@ -1414,10 +1510,10 @@
             if (!input || !msg) return;
 
             const code = input.value.trim().toUpperCase();
-            if (code === 'WELCOME10' || code === 'LUMINA50') {
+            if (code === 'LUMINA10') {
                 appliedPromo = code;
                 msg.className = "text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 block";
-                msg.textContent = `Voucher ${code} berhasil dipasang!`;
+                msg.textContent = `Kode voucher ${code} (Diskon 10%) dipasang!`;
                 updateCartUI();
             } else {
                 msg.className = "text-[11px] font-semibold text-rose-500 block";
@@ -1436,7 +1532,7 @@
             }
             localStorage.setItem('lumina_wishlist', JSON.stringify(wishlist));
             updateWishlistUI();
-            renderProducts();
+            renderProductsGrid();
         }
 
         function updateWishlistUI() {
@@ -1467,8 +1563,8 @@
                             <div class="text-xs font-black text-brand-600 dark:text-brand-400">${formatRupiah(item.price)}</div>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button onclick="addToCart(${item.id})" class="p-2 bg-brand-600 text-white rounded-xl text-xs hover:bg-brand-700">
-                                <i class="fa-solid fa-cart-plus"></i>
+                            <button onclick="openProductDetail(${item.id}); toggleWishlistDrawer();" class="p-2 bg-brand-600 text-white rounded-xl text-xs hover:bg-brand-700" title="Buka Detail">
+                                <i class="fa-solid fa-eye"></i>
                             </button>
                             <button onclick="toggleWishlist(${item.id})" class="p-2 text-slate-400 hover:text-rose-500 text-xs">
                                 <i class="fa-solid fa-xmark"></i>
@@ -1479,41 +1575,61 @@
             }
         }
 
-        /* ------------------------------------------------------------------ */
-        /* WHATSAPP CHECKOUT GENERATOR                                        */
-        /* ------------------------------------------------------------------ */
         function checkoutCartWhatsApp() {
             if (cart.length === 0) {
                 showToast('Keranjang Anda masih kosong!', 'fa-circle-exclamation');
                 return;
             }
 
-            let message = "Halo LUMINA Luxe Store, saya ingin melakukan pemesanan:\n\n";
+            let message = "Halo LUMINA Store, saya ingin memesan barang berikut dari Gudang:\n\n";
             let subtotal = 0;
 
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-                message += `${index + 1}. *${item.name}*\n   ${item.quantity} x ${formatRupiah(item.price)} = ${formatRupiah(itemTotal)}\n`;
+                const variantInfo = item.selectedVariant ? ` (${item.selectedVariant})` : '';
+                message += `${index + 1}. *${item.name}*${variantInfo}\n   Qty: ${item.quantity} x ${formatRupiah(item.price)} = ${formatRupiah(itemTotal)}\n`;
             });
 
             let discount = 0;
-            if (appliedPromo === 'WELCOME10') discount = Math.round(subtotal * 0.10);
-            else if (appliedPromo === 'LUMINA50') discount = Math.min(50000, Math.round(subtotal * 0.50));
+            if (appliedPromo === 'LUMINA10') discount = Math.round(subtotal * 0.10);
 
             const total = Math.max(0, subtotal - discount);
 
             message += `\nSubtotal: ${formatRupiah(subtotal)}`;
-            if (discount > 0) message += `\nPromo (${appliedPromo}): -${formatRupiah(discount)}`;
-            message += `\n*TOTAL BAYAR: ${formatRupiah(total)}*\n\nMohon informasi ongkir dan rekening pembayaran. Terima kasih!`;
+            if (discount > 0) message += `\nPromo Voucher (${appliedPromo}): -${formatRupiah(discount)}`;
+            message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*\n\nMohon informasi ongkir dan rekening pembayaran. Terima kasih!`;
 
             const encodedMessage = encodeURIComponent(message);
             window.open(`https://wa.me/6285150945518?text=${encodedMessage}`, '_blank');
         }
 
         /* ------------------------------------------------------------------ */
-        /* MODAL & DRAWER TOGGLES                                             */
+        /* UTILS & UI DRAWERS                                                 */
         /* ------------------------------------------------------------------ */
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(number);
+        }
+
+        function showToast(message, iconClass = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-message');
+
+            if (!toast) return;
+
+            icon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+            msg.textContent = message;
+
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+
         function toggleCartDrawer() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-drawer-backdrop');
@@ -1548,155 +1664,29 @@
             }
         }
 
-        function openQuickView(productId) {
-            const product = productsData.find(p => p.id === productId);
-            const modal = document.getElementById('quickview-modal-backdrop');
-            const content = document.getElementById('quickview-content');
-            if (!product || !modal || !content) return;
-
-            content.innerHTML = `
-                <div class="bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden aspect-square flex items-center justify-center">
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
-                </div>
-                <div class="flex flex-col justify-between space-y-4">
-                    <div>
-                        <span class="text-[10px] font-black uppercase tracking-wider text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 px-2.5 py-1 rounded-full border border-brand-200 dark:border-brand-800">
-                            ${product.category}
-                        </span>
-                        <h2 class="text-xl font-extrabold text-slate-900 dark:text-white mt-2 mb-1">${product.name}</h2>
-                        <div class="flex items-center space-x-2 text-xs text-amber-400 font-bold mb-3">
-                            <i class="fa-solid fa-star"></i>
-                            <span>${product.rating}</span>
-                            <span class="text-slate-400 font-normal">(${product.reviewsCount} Ulasan)</span>
-                        </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">${product.description}</p>
-                    </div>
-
-                    <div class="space-y-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-                        <div class="flex items-baseline space-x-2">
-                            <span class="text-2xl font-black text-slate-900 dark:text-white">${formatRupiah(product.price)}</span>
-                            ${product.originalPrice ? `<span class="text-xs text-slate-400 line-through">${formatRupiah(product.originalPrice)}</span>` : ''}
-                        </div>
-                        <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full py-3.5 gradient-btn text-white font-extrabold rounded-2xl text-xs shadow-glow flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Tambah ke Keranjang</span>
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
-        }
-
-        function closeQuickView() {
-            const modal = document.getElementById('quickview-modal-backdrop');
-            if (modal) modal.classList.add('hidden');
-        }
-
-        /* PROMO MODAL HANDLERS */
-        function openPromoModal() {
-            const modal = document.getElementById('promo-modal-backdrop');
-            if (modal) modal.classList.remove('hidden');
-        }
-
-        function closePromoModal() {
-            const modal = document.getElementById('promo-modal-backdrop');
-            if (modal) modal.classList.add('hidden');
-            sessionStorage.setItem('promo_closed', 'true');
-        }
-
-        function copyPromoCode() {
-            const codeText = document.getElementById('promo-code-text')?.innerText || 'WELCOME10';
-            const dummy = document.createElement('textarea');
-            document.body.appendChild(dummy);
-            dummy.value = codeText;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-
-            const copyBtn = document.getElementById('copy-code-btn');
-            if (copyBtn) {
-                copyBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-500"></i><span>Tersalin!</span>`;
-                setTimeout(() => {
-                    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i><span>Salin</span>`;
-                }, 2000);
-            }
-            showToast(`Kode ${codeText} tersalin!`, 'fa-copy');
-        }
-
-        function claimPromoOffer() {
-            appliedPromo = 'WELCOME10';
-            const input = document.getElementById('promo-code-input');
-            if (input) input.value = 'WELCOME10';
-            applyPromoCode();
-            closePromoModal();
-            toggleCartDrawer();
-        }
-
-        /* ------------------------------------------------------------------ */
-        /* UTILITY HELPERS                                                    */
-        /* ------------------------------------------------------------------ */
-        function formatRupiah(number) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                maximumFractionDigits: 0
-            }).format(number);
-        }
-
-        let toastTimer;
-        function showToast(msg, iconClass = 'fa-circle-check') {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            const toastIcon = document.getElementById('toast-icon');
-
-            if (!toast || !toastMsg) return;
-
-            toastMsg.textContent = msg;
-            if (toastIcon) toastIcon.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
-
-            toast.classList.remove('hidden');
-            toast.style.opacity = '1';
-
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.classList.add('hidden'), 300);
-            }, 3000);
-        }
-
-        function setupScrollReveal() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-        }
-
-        /* FAQ ACCORDION TOGGLE HANDLER */
-        function toggleFaq(buttonEl) {
-            const currentItem = buttonEl.closest('.faq-item');
-            const allItems = document.querySelectorAll('.faq-item');
-            
-            allItems.forEach(item => {
-                if (item !== currentItem) {
-                    item.classList.remove('active');
-                    item.classList.remove('border-brand-500/30', 'dark:border-brand-500/40');
-                    item.classList.add('border-slate-200/80', 'dark:border-slate-800');
-                }
-            });
-
-            const isActive = currentItem.classList.toggle('active');
-            if (isActive) {
-                currentItem.classList.remove('border-slate-200/80', 'dark:border-slate-800');
-                currentItem.classList.add('border-brand-500/30', 'dark:border-brand-500/40');
+        function initTheme() {
+            const isDark = localStorage.getItem('lumina_theme') === 'dark' || 
+                (!('lumina_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                updateThemeIcon(true);
             } else {
-                currentItem.classList.remove('border-brand-500/30', 'dark:border-brand-500/40');
-                currentItem.classList.add('border-slate-200/80', 'dark:border-slate-800');
+                document.documentElement.classList.remove('dark');
+                updateThemeIcon(false);
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('lumina_theme', isDark ? 'dark' : 'light');
+            updateThemeIcon(isDark);
+            showToast(isDark ? 'Mode Gelap diaktifkan' : 'Mode Terang diaktifkan', 'fa-moon');
+        }
+
+        function updateThemeIcon(isDark) {
+            const icon = document.getElementById('theme-toggle-icon');
+            if (icon) {
+                icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-lg' : 'fa-solid fa-moon text-lg';
             }
         }
     </script>
