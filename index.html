@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -71,20 +71,20 @@
         button, a, input, select {
             transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease !important;
         }
-        .product-card {
+        .product-card, .news-card {
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
-        .product-card:hover {
+        .product-card:hover, .news-card:hover {
             transform: translateY(-6px) !important;
             box-shadow: 0 18px 36px -8px rgba(99, 102, 241, 0.18), 0 8px 16px -4px rgba(0, 0, 0, 0.05) !important;
         }
-        .dark .product-card:hover {
+        .dark .product-card:hover, .dark .news-card:hover {
             box-shadow: 0 20px 36px -8px rgba(99, 102, 241, 0.3), 0 8px 20px -4px rgba(0, 0, 0, 0.5) !important;
         }
-        .product-card-img {
+        .product-card-img, .news-card-img {
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
-        .product-card:hover .product-card-img {
+        .product-card:hover .product-card-img, .news-card:hover .news-card-img {
             transform: scale(1.06) !important;
         }
         .fade-in-view {
@@ -148,6 +148,11 @@
                 <div class="flex items-center space-x-1 sm:space-x-2">
                     <button onclick="navigateToCatalog()" class="hidden sm:flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 rounded-xl">
                         <i class="fa-solid fa-grip text-brand-500"></i> Katalog Produk
+                    </button>
+
+                    <!-- Functional News Navigation Link -->
+                    <button onclick="navigateToNews()" class="flex items-center gap-2 px-3 py-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 rounded-xl transition-colors">
+                        <i class="fa-solid fa-newspaper text-brand-500"></i> Berita & Edukasi
                     </button>
 
                     <!-- Dark Mode Toggle -->
@@ -555,6 +560,59 @@
 
         </section>
 
+
+        <!-- VIEW 3: NEWS PAGE VIEW -->
+        <section id="news-view" class="hidden fade-in-view max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Breadcrumbs Navigation -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <button onclick="navigateToCatalog()" class="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-200 transition-colors shadow-sm">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Kembali ke Katalog</span>
+                </button>
+
+                <nav class="flex items-center space-x-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <a href="javascript:void(0)" onclick="navigateToCatalog()" class="hover:text-brand-600 dark:hover:text-brand-400">Katalog</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 dark:text-slate-700"></i>
+                    <span class="font-bold text-brand-600 dark:text-brand-400">Berita & Artikel</span>
+                </nav>
+            </div>
+
+            <!-- News Hero Section -->
+            <div class="relative rounded-3xl overflow-hidden bg-slate-900 shadow-xl mb-10 min-h-[200px] flex items-center p-6 sm:p-10">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80" alt="News Banner" class="absolute inset-0 w-full h-full object-cover opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+                
+                <div class="relative z-10 max-w-xl text-white">
+                    <span class="inline-block bg-brand-500/30 border border-brand-400/40 text-brand-200 text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                        LUMINA INSIGHTS & NEWS
+                    </span>
+                    <h1 class="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+                        Kabar Terbaru, Edukasi & Tren Produk Terkini
+                    </h1>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 font-normal">
+                        Dapatkan wawasan seputar perkembangan kuliner UMKM lokal, teknologi wearable, hingga tips perawatan perangkat favorit Anda.
+                    </p>
+                </div>
+            </div>
+
+            <!-- News Filter Tabs -->
+            <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+                <div>
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-xs uppercase tracking-wider block mb-1">
+                        <i class="fa-solid fa-newspaper mr-1"></i> Artikel Pilihan
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">Berita & Informasi Terbaru</h2>
+                </div>
+            </div>
+
+            <!-- News Grid Container (Min 6 News Cards) -->
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+        </section>
+
     </main>
 
     <!-- CART DRAWER OVERLAY -->
@@ -686,6 +744,57 @@
 
     <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
+        const newsData = [
+            {
+                id: 1,
+                title: "Inovasi Pengemasan Double Seal Aluminum Foil untuk Keamanan Pengiriman Sambal UMKM",
+                category: "UMKM & KULINER",
+                date: "28 September 2026",
+                description: "Pelajari bagaimana standar pengemasan terbaru dari gudang LUMINA memastikan produk sambal cumi tetap segar dan bebas kebocoran selama perjalanan pengiriman luar pulau.",
+                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                title: "Mengenal Fitur Active Noise Cancellation (ANC) pada Headphone Modern",
+                category: "TEKNOLOGI AUDIO",
+                date: "25 September 2026",
+                description: "Bagaimana teknologi isolasi suara bekerja untuk meredam kebisingan luar hingga 35dB dan menghadirkan kualitas audio tingkat studio yang jernih.",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                title: "Panduan Memilih Smartwatch AMOLED Terbaik untuk Gaya Hidup Sehat",
+                category: "GADGET & WEARABLE",
+                date: "20 September 2026",
+                description: "Ulasan fitur-fitur penting smartwatch mulai dari pemantauan detak jantung 24/7, sensor SpO2, hingga proteksi IP68 untuk mendukung aktivitas harian.",
+                image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                title: "Tips Perawatan Material Microfiber Leather Agar Awet dan Selalu Tampil Elegan",
+                category: "AKSESORIS TECH",
+                date: "15 September 2026",
+                description: "Langkah-langkah sederhana merawat sleeve laptop sintetis agar tahan percikan air, bebas goresan, dan menjaga daya tahan permukaan kain pelindung.",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                title: "Optimasi Logistik Gudang Pusat Jakarta: Pengiriman Kilat di Hari yang Sama",
+                category: "LOGISTIK & TREN",
+                date: "10 September 2026",
+                description: "Sistem manajemen stok cerdas di Gudang Pusat LUMINA mempercepat alur penyiapan barang dari rak ke kurir logistik dalam hitungan jam.",
+                image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                title: "Resep Spesial Mengolah Sambal Bawang Menjadi Bumbu Dasar Nasi Goreng Praktis",
+                category: "RESEP & KULINER",
+                date: "05 September 2026",
+                description: "Kreasikan rasa gurih otentik sambal bawang UMKM sebagai bumbu serbaguna untuk menghidangkan masakan lezat dan cepat di rumah.",
+                image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
         const productsData = [
             {
                 id: 1,
@@ -904,6 +1013,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             initTheme();
             renderProductsGrid();
+            renderNewsGrid();
             updateCartUI();
             updateWishlistUI();
             setupCarouselTouchEvents();
@@ -911,8 +1021,61 @@
 
         function navigateToCatalog() {
             document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('news-view').classList.add('hidden');
             document.getElementById('catalog-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateToNews() {
+            document.getElementById('catalog-view').classList.add('hidden');
+            document.getElementById('detail-view').classList.add('hidden');
+            document.getElementById('news-view').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderNewsGrid() {
+            const container = document.getElementById('news-grid');
+            if (!container) return;
+
+            container.innerHTML = newsData.map(item => `
+                <article class="news-card bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <!-- Image & Category Tag -->
+                        <div class="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-800">
+                            <img src="${item.image}" alt="${item.title}" class="news-card-img w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 z-10">
+                                <span class="bg-brand-600/90 backdrop-blur-md text-white font-extrabold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                                    ${item.category}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center text-xs text-slate-400 font-medium">
+                                <i class="fa-regular fa-calendar-days mr-1.5 text-brand-500"></i>
+                                <span>${item.date}</span>
+                            </div>
+
+                            <h3 class="text-base font-extrabold text-slate-900 dark:text-white leading-snug group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                                ${item.title}
+                            </h3>
+
+                            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                                ${item.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Read More Button Footer -->
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="showToast('Membaca artikel: ${item.title.replace(/'/g, "\\'")}', 'fa-newspaper')" class="w-full py-2.5 px-4 bg-slate-100 hover:bg-brand-600 dark:bg-slate-800 dark:hover:bg-brand-600 text-slate-700 hover:text-white dark:text-slate-200 dark:hover:text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 transition-all">
+                            <span>Baca Selengkapnya</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
         }
 
         function openProductDetail(productId) {
@@ -1013,6 +1176,7 @@
 
             // Switch view
             document.getElementById('catalog-view').classList.add('hidden');
+            document.getElementById('news-view').classList.add('hidden');
             document.getElementById('detail-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
